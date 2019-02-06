@@ -1,7 +1,7 @@
 Factory parameters:
 
 Location:
-* Proximity to resources (iron, coal, etc) increases base profitability
+* Proximity to resources (iron, coal, etc) increases base profitability as well as goods profitability
 * Proximity to rivers (shipping) increases base profitability
 * Proximity to urban centers (labor) increases base profitability
 
@@ -23,3 +23,20 @@ Workers:
   - Worker reforms can change minimum wages/call for increases
 * Quantity
   - Direct relationship with quantity of items sold
+
+YAML-CD:
+```yaml
+Controller:
+  Year
+  Money available
+City/Region:
+  Name
+  Proximity to Water
+  Proximity to Resources:
+    Coal
+    Iron
+    Etc
+  Population (for labor costs)
+Factory:
+
+```
