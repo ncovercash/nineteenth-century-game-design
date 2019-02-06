@@ -1,2 +1,2 @@
-# ninteenth-century-game-design
+# nineteenth-century-game-design
 Project for Wallace's Euro Assignment
