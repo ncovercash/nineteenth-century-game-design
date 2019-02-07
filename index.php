@@ -111,6 +111,20 @@
 								<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="1000" />
 							</p>
 						</div>
+
+						<div class="col s12" id="city-parameters" style="border: 1px solid black;">
+							<div id="city-parameters-no-selection">
+								<p class="center align-center grey-text">
+									<i>
+										Please select a city
+									</i>
+								</p>
+							</div>
+							<div class="hide" data-city="manchester" id="city-parameters-selected">
+								<h4 id="city-name"></h4>
+								<h5>Population <span id="city-population"></span></h5>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
