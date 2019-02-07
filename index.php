@@ -101,14 +101,16 @@
 						<?= file_get_contents("map.svg") ?>
 					</div>
 					<div class="col s12 m5 l4">
-						<h4 class="no-top-margin" id="cash"></h4>
-						<h4 class="no-margin"><span id="year"></span></h4>
-						<p class="no-top-margin" id="speed">12 seconds/year</p>
+						<div class="col s12">
+							<h4 class="no-top-margin" id="cash"></h4>
+							<h4 class="no-margin"><span id="year"></span></h4>
+							<p class="no-top-margin" id="speed">12 seconds/year</p>
 
-						<label for="speedSlider">Speed</label>
-						<p class="range-field">
-							<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="1000" />
-						</p>
+							<label for="speedSlider">Speed</label>
+							<p class="range-field col s12">
+								<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="1000" />
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
