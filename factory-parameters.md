@@ -27,7 +27,8 @@ Workers:
 YAML-CD:
 ```yaml
 Controller:
-  Year
+  Year, Date
+  Speed/Freeze
   Money available
 City/Region:
   Name
