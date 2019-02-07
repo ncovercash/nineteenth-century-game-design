@@ -462,6 +462,8 @@
 			return;
 		}
 
+		var selectedCity = CITY_DEFINITIONS[document.getElementById("city-parameters-selected").getAttribute("data-city")];
+		document.getElementById("city-population").innerHTML = selectedCity.population(year, month).formatCommas(0);
 
 		cashElement.innerHTML = "$"+cash.formatCommas();
 
@@ -517,4 +519,33 @@
 		}
 	}
 
+	function initClickableMapItems() {
+		var clickableMapItems = document.getElementsByClassName("map-clickable");
+
+		for (var i=0; i<clickableMapItems.length; i++) {
+			clickableMapItems[i].onclick = function() {
+				var city = CITY_DEFINITIONS[this.getAttribute("data-city")];
+
+				document.getElementById("city-parameters-no-selection").classList.add("hide");
+				document.getElementById("city-parameters-selected").classList.remove("hide");
+
+				document.getElementById("city-name").innerHTML = city.name;
+				document.getElementById("city-parameters-selected").setAttribute("data-city", city.shortName);
+				document.getElementById("city-population").innerHTML = city.population(year, month).formatCommas(0);
+
+				for (var i=0; i<clickableMapItems.length; i++) {
+					clickableMapItems[i].style.stroke = "#ffffff";
+				}
+		
+				var cityItems = document.querySelectorAll(".map-clickable[data-city="+this.getAttribute("data-city")+"]");
+		
 				for (var i=0; i<cityItems.length; i++) {
+					cityItems[i].style.stroke = "#f44336";
+				}
+			};
+		}
+	};
+	initClickableMapItems();
+
+	tick();
+</script>
