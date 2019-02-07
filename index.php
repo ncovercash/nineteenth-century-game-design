@@ -132,7 +132,7 @@
 	</body>
 </html>
 <script type="text/javascript">
-	Number.prototype.formatMoney = function(c, d, t) {
+	Number.prototype.formatCommas = function(c, d, t) {
 		var n = this;
 		var c = isNaN(c = Math.abs(c)) ? 2 : c,
 			d = d == undefined ? "." : d,
@@ -188,6 +188,7 @@
 					var secondsPerYear = 12*secondsPerMonth;
 
 					console.log(""+secondsPerYear+" seconds per year");
+		cashElement.innerHTML = "$"+cash.formatCommas();
 
 					var roundedValue = Math.round(secondsPerYear*100)/100;
 
@@ -220,7 +221,6 @@
 					console.log("PAUSED");
 				}
 
-				cashElement.innerHTML = "$"+cash.formatMoney();
 			}
 
 			tick();
