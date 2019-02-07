@@ -142,6 +142,288 @@
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
+	const CITY_DEFINITIONS = {
+		milan: {
+			shortName: "milan",
+			name: "Milan, Italy",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return undefined + undefined*decadeYear;
+					case 177:
+						return undefined + undefined*decadeYear;
+					case 178:
+						return undefined + undefined*decadeYear;
+					case 179:
+						return undefined + undefined*decadeYear;
+					case 180:
+						return undefined + undefined*decadeYear;
+					case 181:
+						return undefined + undefined*decadeYear;
+					case 182:
+						return undefined + undefined*decadeYear;
+					case 183:
+						return undefined + undefined*decadeYear;
+					case 184:
+						return undefined + undefined*decadeYear;
+					case 185:
+						return undefined + undefined*decadeYear;
+					default:
+						throw "Year "+year+" is not known for Milan, Italy.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+		essen: {
+			shortName: "essen",
+			name: "Essen, Prussia",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return undefined + undefined*decadeYear;
+					case 177:
+						return undefined + undefined*decadeYear;
+					case 178:
+						return undefined + undefined*decadeYear;
+					case 179:
+						return undefined + undefined*decadeYear;
+					case 180:
+						return undefined + undefined*decadeYear;
+					case 181:
+						return undefined + undefined*decadeYear;
+					case 182:
+						return undefined + undefined*decadeYear;
+					case 183:
+						return undefined + undefined*decadeYear;
+					case 184:
+						return undefined + undefined*decadeYear;
+					case 185:
+						return undefined + undefined*decadeYear;
+					default:
+						throw "Year "+year+" is not known for Essen, Prussia.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+		paris: {
+			shortName: "paris",
+			name: "Paris, France",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return undefined + undefined*decadeYear;
+					case 177:
+						return undefined + undefined*decadeYear;
+					case 178:
+						return undefined + undefined*decadeYear;
+					case 179:
+						return undefined + undefined*decadeYear;
+					case 180:
+						return undefined + undefined*decadeYear;
+					case 181:
+						return undefined + undefined*decadeYear;
+					case 182:
+						return undefined + undefined*decadeYear;
+					case 183:
+						return undefined + undefined*decadeYear;
+					case 184:
+						return undefined + undefined*decadeYear;
+					case 185:
+						return undefined + undefined*decadeYear;
+					default:
+						throw "Year "+year+" is not known for Paris, France.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+		london: {
+			shortName: "london",
+			name: "London, England",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return 770367 + 53721*decadeYear;
+					case 177:
+						return 824088 + 41205*decadeYear;
+					case 178:
+						return 865293 + 53937*decadeYear;
+					case 179:
+						return 919230 + 91927*decadeYear;
+					case 180:
+						return 1011157 + 186516*decadeYear;
+					case 181:
+						return 1197673 + 252449*decadeYear;
+					case 182:
+						return 1450122 + 279827*decadeYear;
+					case 183:
+						return 1729949 + 187064*decadeYear;
+					case 184:
+						return 1917013 + 369596*decadeYear;
+					case 185:
+						return 2286609 + 0*decadeYear;
+					default:
+						throw "Year "+year+" is not known for London, England.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+		manchester: {
+			shortName: "manchester",
+			name: "Manchester, England",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year, month) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return 100236 + 4001*decadeYear;
+					case 177:
+						return 140103 + 5312*decadeYear;
+					case 178:
+						return 193723 + 7483*decadeYear;
+					case 179:
+						return 267123 + 7523*decadeYear;
+					case 180:
+						return 328609 + 8085*decadeYear;
+					case 181:
+						return 409464 + 11677*decadeYear;
+					case 182:
+						return 526230 + 17426*decadeYear;
+					case 183:
+						return 700486 + 15993*decadeYear;
+					case 184:
+						return 860413 + 17659*decadeYear;
+					case 185:
+						return 1037001 + 0*decadeYear;
+					default:
+						throw "Year "+year+" is not known for Manchester, England.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+		birmingham: {
+			shortName: "birmingham",
+			name: "Birmingham, England",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return 34886 + 403*decadeYear;
+					case 177:
+						return 38204 + 501*decadeYear;
+					case 178:
+						return 43232 + 1423*decadeYear;
+					case 179:
+						return 57462 + 1602*decadeYear;
+					case 180:
+						return 73760 + 1199.3*decadeYear;
+					case 181:
+						return 85753 + 2097*decadeYear;
+					case 182:
+						return 106722 + 4026*decadeYear;
+					case 183:
+						return 146986 + 3594*decadeYear;
+					case 184:
+						return 182922 + 4972*decadeYear;
+					case 185:
+						return 232638 + 0*decadeYear;
+					default:
+						throw "Year "+year+" is not known for Birmingham, England.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+		bristol: {
+			shortName: "bristol",
+			name: "Bristol, England",
+			proximities: {
+				water: undefined,
+				iron: undefined,
+				coal: undefined
+			},
+			population: function(year) {
+				var decade = Math.floor(year/10);
+				var decadeYear = year%10+(month/12);
+
+				switch (decade) {
+					case 176:
+						return 40124 + 569.9*decadeYear;
+					case 177:
+						return 45823 + 648.1*decadeYear;
+					case 178:
+						return 52304 + 704.8*decadeYear;
+					case 179:
+						return 59352 + 959.2*decadeYear;
+					case 180:
+						return 68944 + 1497.8*decadeYear;
+					case 181:
+						return 83922 + 1522.9*decadeYear;
+					case 182:
+						return 99151 + 2163.8*decadeYear;
+					case 183:
+						return 120789 + 2401.4*decadeYear;
+					case 184:
+						return 144803 + 1514.2*decadeYear;
+					case 185:
+						return 159945 + 0*decadeYear;
+					default:
+						throw "Year "+year+" is not known for Bristol, England.";
+				}
+			},
+			baseFactoryCost: undefined,
+			factoryCostMultiplier: 1.1
+		},
+	};
 
 			const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 			var year = 1760;
