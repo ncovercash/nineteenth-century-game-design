@@ -5,8 +5,6 @@
 			Nineteenth Century Game Design
 		</title>
 		
-		<script src="jquery.min.js"></script>
-		
 		<link href="materialize.min.css.php" rel="stylesheet"/>
 		<style type="text/css">
 			.no-margin {
@@ -217,9 +215,6 @@
 				if (dateSpeed != 0) {
 					console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
 					tickTimeout = setTimeout(tick, 2000-dateSpeed);
-				} else {
-					console.log("PAUSED");
-				}
 
 			}
 
@@ -228,3 +223,4 @@
 	})(jQuery);
 </script>
 
+				for (var i=0; i<cityItems.length; i++) {
