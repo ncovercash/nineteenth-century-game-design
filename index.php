@@ -425,79 +425,96 @@
 		},
 	};
 
-			const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-			var year = 1760;
-			var month = 0;
+	const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	var year = 1760;
+	var month = 0;
 
-			var cash = 10000;
-			var cashElement = document.getElementById("cash");
+	var cash = 10000;
+	var cashElement = document.getElementById("cash");
 
-			var dateElement = document.getElementById("year");
+	var dateElement = document.getElementById("year");
 
-			var paused = false;
-			var dateSpeed = 1000;
+	var paused = false;
+	var dateSpeed = 1000;
+	var lastTick = Date.now();
 
-			var speedSliderElement = document.getElementById("speedSlider");
-			var speedValueElement = document.getElementById("speed");
+	var speedSliderElement = document.getElementById("speedSlider");
+	var speedValueElement = document.getElementById("speed");
 
-			var tickTimeout = undefined;
+	var tickTimeout = undefined;
 
-			speedSliderElement.oninput = function(e) {
-				dateSpeed = this.value;
+	function tick() {
+		lastTick = Date.now();
 
-				clearInterval(tickTimeout);
-				console.log("Clearing old timeout.");
+		if (!paused) {
+			month++;
+			if (month >= 12) {
+				year++;
+				month = 0;
+			}
+		}
 
-				if (dateSpeed != 0) {
-					console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
-					tickTimeout = setTimeout(tick, 2000-dateSpeed);
-				} else {
-					console.log("PAUSED");
-				}
+		dateElement.innerHTML = year + " " + MONTHS[month];
 
-				if (dateSpeed == 0) {
-					speedValueElement.innerHTML = "PAUSED";
-					console.log("Setting speed value to \"PAUSED\"");
-				} else {
-					var monthMs = 2000-dateSpeed;
-					var secondsPerMonth = monthMs/1000;
+		if (year == 1850) {
+			console.log("Ending game, year 1850 reached");
+			endGame();
+			return;
+		}
 
-					var secondsPerYear = 12*secondsPerMonth;
 
-					console.log(""+secondsPerYear+" seconds per year");
 		cashElement.innerHTML = "$"+cash.formatCommas();
 
-					var roundedValue = Math.round(secondsPerYear*100)/100;
+		if (dateSpeed != 0) {
+			console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
+			tickTimeout = setTimeout(tick, 2000-dateSpeed);
+		} else {
+			console.log("PAUSED");
+		}
+	}
 
-					console.log("Setting speed value to "+roundedValue);
+	speedSliderElement.oninput = function(e) {
+		dateSpeed = this.value;
 
-					speedValueElement.innerHTML = ""+roundedValue+" seconds/year";
-				}
+		clearInterval(tickTimeout);
+		console.log("Clearing old timeout.");
+
+		if (dateSpeed != 0) {
+			var timeoutLength = 2000-dateSpeed;
+
+			console.log("Timeout is "+timeoutLength+"ms");
+			
+			var sinceLastTick = Date.now()-lastTick;
+
+			console.log(""+sinceLastTick+"ms since last tick; effective timeout for this iteration is "+(timeoutLength-sinceLastTick));
+
+			if (timeoutLength-sinceLastTick <= 0) {
+				console.log("Timeout is <=0, ticking NOW");
+				tick();
+			} else {
+				tickTimeout = setTimeout(tick, timeoutLength-sinceLastTick);
 			}
+		} else {
+			console.log("PAUSED");
+		}
 
-			function tick() {
-				if (!paused) {
-					month++;
-					if (month >= 12) {
-						year++;
-						month = 0;
-					}
-				}
+		if (dateSpeed == 0) {
+			speedValueElement.innerHTML = "PAUSED";
+			console.log("Setting speed value to \"PAUSED\"");
+		} else {
+			var monthMs = 2000-dateSpeed;
+			var secondsPerMonth = monthMs/1000;
 
-				dateElement.innerHTML = year + " " + MONTHS[month];
+			var secondsPerYear = 12*secondsPerMonth;
 
-				if (year == 1850) {
-					console.log("Ending game, year 1850 reached");
-					endGame();
-				}
+			console.log(""+secondsPerYear+" seconds per year");
 
-				if (dateSpeed != 0) {
-					console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
-					tickTimeout = setTimeout(tick, 2000-dateSpeed);
+			var roundedValue = Math.round(secondsPerYear*100)/100;
 
-			}
+			console.log("Setting speed value to "+roundedValue);
 
-			tick();
-</script>
+			speedValueElement.innerHTML = ""+roundedValue+" seconds/year";
+		}
+	}
 
 				for (var i=0; i<cityItems.length; i++) {
