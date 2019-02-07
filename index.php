@@ -101,7 +101,8 @@
 						<canvas id="canvas" style="border: 1px solid black; border-radius: 0.4em;"></canvas>
 					</div>
 					<div class="col s12 m5 l4">
-						<h4 class="no-bottom-margin"><span id="year"></span></h4>
+						<h4 class="no-top-margin" id="cash"></h4>
+						<h4 class="no-margin"><span id="year"></span></h4>
 						<p class="no-top-margin" id="speed">12 seconds/year</p>
 
 						<label for="speedSlider">Speed</label>
@@ -115,6 +116,18 @@
 	</body>
 </html>
 <script type="text/javascript">
+	Number.prototype.formatMoney = function(c, d, t) {
+		var n = this;
+		var c = isNaN(c = Math.abs(c)) ? 2 : c,
+			d = d == undefined ? "." : d,
+			t = t == undefined ? "," : t,
+			s = n < 0 ? "-" : "",
+			i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+			j = (j = i.length) > 3 ? j % 3 : 0;
+
+		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	};
+
 	(function($){
 		$(function(){
 			var canvas = document.getElementById("canvas");
@@ -122,6 +135,9 @@
 			const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 			var year = 1760;
 			var month = 0;
+
+			var cash = 10000;
+			var cashElement = document.getElementById("cash");
 
 			var dateElement = document.getElementById("year");
 
@@ -187,6 +203,8 @@
 				} else {
 					console.log("PAUSED");
 				}
+
+				cashElement.innerHTML = "$"+cash.formatMoney();
 			}
 
 			tick();
