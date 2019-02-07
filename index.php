@@ -181,8 +181,6 @@
 					endGame();
 				}
 
-				dateSpeed = speedSliderElement.value;
-
 				if (dateSpeed != 0) {
 					console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
 					tickTimeout = setTimeout(tick, 2000-dateSpeed);
