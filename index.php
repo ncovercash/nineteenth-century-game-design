@@ -90,7 +90,7 @@
 			<div class="section">
 				<h2 class="header center no-margin">19<sup>th</sup> Century Game Design</h2>
 				<h5 class="header center small-margin">Noah Overcash and Harry Charles</h5>
-				<h5 class="header center no-top-margin">Mr. Wallace's AP European History,Period 4</h5>
+				<h5 class="header center no-top-margin">Mr. Wallace's AP European History, Period 3A</h5>
 
 				<p>Instructions go here, try to get the most money by the year 1850</p>
 			</div>
