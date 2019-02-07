@@ -142,8 +142,6 @@
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
-	(function($){
-		$(function(){
 			var canvas = document.getElementById("canvas");
 
 			const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -219,8 +217,6 @@
 			}
 
 			tick();
-		});
-	})(jQuery);
 </script>
 
 				for (var i=0; i<cityItems.length; i++) {
