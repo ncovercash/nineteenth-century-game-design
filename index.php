@@ -98,7 +98,7 @@
 			<div class="section">
 				<div class="row">
 					<div class="col s12 m7 l8">
-						<canvas id="canvas" style="border: 1px solid black; border-radius: 0.4em;"></canvas>
+						<?= file_get_contents("map.svg") ?>
 					</div>
 					<div class="col s12 m5 l4">
 						<h4 class="no-top-margin" id="cash"></h4>
