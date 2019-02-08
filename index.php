@@ -199,6 +199,8 @@
 	var cityProximityToCoalElement = document.getElementById("proximity-to-coal");
 	var cityProximityToIronElement = document.getElementById("proximity-to-iron");
 
+	var cityBuildFactoryDisplay = document.getElementById("build-factory-display");
+
 	var tickTimeout = undefined;
 
 	function tick() {
@@ -342,7 +344,7 @@
 					factoryBuyButton.appendChild(document.createTextNode("$"+(factoryType.factoryCost(city)).formatCommas(2)));
 					factoryWrapper.appendChild(factoryBuyButton);
 
-					cityParametersElement.appendChild(factoryWrapper);
+					cityBuildFactoryDisplay.appendChild(factoryWrapper);
 				}
 			};
 		}
