@@ -229,7 +229,7 @@
 
 	var tickTimeout = undefined;
 
-	function tick() {
+	function tick(doTick=true) {
 		lastTick = Date.now();
 
 		if (!paused) {
@@ -282,6 +282,13 @@
 			tickTimeout = setTimeout(tick, 2000-dateSpeed);
 		} else {
 			console.log("PAUSED");
+		if (doTick) {
+			if (dateSpeed != 0) {
+				console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
+				tickTimeout = setTimeout(tick, 2000-dateSpeed);
+			} else {
+				console.log("PAUSED");
+			}
 		}
 	}
 
