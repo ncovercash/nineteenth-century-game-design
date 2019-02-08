@@ -153,7 +153,6 @@
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
-	var exportDefinitions = {
 	const PROXIMITY_LABELS = {
 		1: "Very Far",
 		2: "Far",
@@ -165,21 +164,43 @@
 	var factoryTypes = {
 		textile: {
 			name: "Textiles",
-			description: {
-
-			},
+			shortName: "textile",
+			description: "Produces linens, wool, silk, cotton, and other textile products using the water frame.",
 			factoryName: "Textile Factory",
-			factoryCostMultiplier: 5,
 			factoryCost: function(city) {
-				console.log(this);
-				return city.baseFactoryCost*factoryCostMultiplier;
+				return city.baseFactoryCost*(city.factoryCostMultiplier**city.numberOfFactories(this.shortName))*(1.1-(0.1*city.proximity.water));
 			},
-			demand: 1
+			productionPerWorker: function(city) {
+				return 3/(1.1-(0.1*city.proximity.water));
+			},
+			demand: 100
 		},
 		metals: {
-			name: "Metals"
+			name: "Metals",
+			shortName: "metals",
+			description: "Produces iron, steel, tin, and other essential materials for construction.",
+			factoryName: "Metal Refinery",
+			factoryCost: function(city) {
+				return city.baseFactoryCost*(city.factoryCostMultiplier**city.numberOfFactories(this.shortName))*(1.2-(0.05*city.proximity.iron)-(0.05*city.proximity.coal));
+			},
+			productionPerWorker: function(city) {
+				return 2/(1.2-(0.05*city.proximity.iron)-(0.05*city.proximity.coal));
+			},
+			demand: 100
 		},
-		refineries: 0
+		consumerGoods: {
+			name: "Consumer Goods",
+			shortName: "consumerGoods",
+			description: "Produces consumer goods for the average person to use.",
+			factoryName: "General Factory",
+			factoryCost: function(city) {
+				return city.baseFactoryCost*(city.factoryCostMultiplier**city.numberOfFactories(this.shortName))*(1.1-(0.03*city.proximity.water)-(0.03*city.proximity.iron)-(0.03*city.proximity.coal));
+			},
+			productionPerWorker: function(city) {
+				return 4/(1.15-(0.05*city.proximity.water)-(0.05*city.proximity.iron)-(0.05*city.proximity.coal));
+			},
+			demand: 100
+		}
 	};
 
 	var cityDefinitions = {
