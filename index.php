@@ -112,9 +112,7 @@
 							<p class="no-top-margin" id="speed">12 seconds/year</p>
 
 							<label for="speedSlider">Speed</label>
-							<p class="range-field col s12">
-								<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="1000" />
-							</p>
+							<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="1000" />
 						</div>
 
 						<div class="col s12" id="city-parameters" style="border: 1px solid black;">
