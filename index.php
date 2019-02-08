@@ -142,6 +142,26 @@
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
+	var exportDefinitions = {
+		textile: {
+			name: "Textiles",
+			description: {
+
+			},
+			factoryName: "Textile Factory",
+			factoryCostMultiplier: 5,
+			factoryCost: function(city) {
+				console.log(this);
+				return city.baseFactoryCost*factoryCostMultiplier;
+			},
+			demand: 1
+		},
+		metals: {
+			name: "Metals"
+		},
+		refineries: 0
+	};
+
 	var cityDefinitions = {
 		milan: {
 			shortName: "milan",
