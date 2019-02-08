@@ -209,10 +209,10 @@
 		milan: {
 			shortName: "milan",
 			name: "Milan, Italy",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 4,
+				iron: 5,
+				coal: 1
 			},
 			population: function(year) {
 				var decade = Math.floor(year/10);
@@ -249,10 +249,10 @@
 		essen: {
 			shortName: "essen",
 			name: "Essen, Prussia",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 5,
+				iron: 4,
+				coal: 5
 			},
 			population: function(year) {
 				var decade = Math.floor(year/10);
@@ -289,10 +289,10 @@
 		paris: {
 			shortName: "paris",
 			name: "Paris, France",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 5,
+				iron: 1,
+				coal: 2
 			},
 			population: function(year) {
 				var decade = Math.floor(year/10);
@@ -329,10 +329,10 @@
 		london: {
 			shortName: "london",
 			name: "London, England",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 5,
+				iron: 1,
+				coal: 5
 			},
 			population: function(year) {
 				var decade = Math.floor(year/10);
@@ -369,10 +369,10 @@
 		manchester: {
 			shortName: "manchester",
 			name: "Manchester, England",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 5,
+				iron: 1,
+				coal: 5
 			},
 			population: function(year, month) {
 				var decade = Math.floor(year/10);
@@ -409,10 +409,10 @@
 		birmingham: {
 			shortName: "birmingham",
 			name: "Birmingham, England",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 3,
+				iron: 1,
+				coal: 4
 			},
 			population: function(year) {
 				var decade = Math.floor(year/10);
@@ -449,10 +449,10 @@
 		bristol: {
 			shortName: "bristol",
 			name: "Bristol, England",
-			proximities: {
-				water: undefined,
-				iron: undefined,
-				coal: undefined
+			proximity: {
+				water: 5,
+				iron: 1,
+				coal: 4
 			},
 			population: function(year) {
 				var decade = Math.floor(year/10);
