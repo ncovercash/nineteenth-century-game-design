@@ -7,9 +7,14 @@
 			iron: 5,
 			coal: 1
 		},
-		population: function(year) {
+		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
+
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
 
 			switch (decade) {
 				case 176:
@@ -37,7 +42,7 @@
 			}
 		},
 		baseFactoryCost: 50000,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
@@ -68,9 +73,14 @@
 			iron: 4,
 			coal: 5
 		},
-		population: function(year) {
+		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
+
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
 
 			switch (decade) {
 				case 176:
@@ -98,7 +108,7 @@
 			}
 		},
 		baseFactoryCost: 40000,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
@@ -129,9 +139,14 @@
 			iron: 1,
 			coal: 2
 		},
-		population: function(year) {
+		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
+
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
 
 			switch (decade) {
 				case 176:
@@ -159,7 +174,7 @@
 			}
 		},
 		baseFactoryCost: 35000,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
@@ -190,29 +205,34 @@
 			iron: 1,
 			coal: 5
 		},
-		population: function(year) {
+		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
 
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
+
 			switch (decade) {
 				case 176:
-					return 770367 + 53721*decadeYear;
+					return 770367 + 5372.1*decadeYear;
 				case 177:
-					return 824088 + 41205*decadeYear;
+					return 824088 + 4120.5*decadeYear;
 				case 178:
-					return 865293 + 53937*decadeYear;
+					return 865293 + 5393.7*decadeYear;
 				case 179:
-					return 919230 + 91927*decadeYear;
+					return 919230 + 9192.7*decadeYear;
 				case 180:
-					return 1011157 + 186516*decadeYear;
+					return 1011157 + 18651.6*decadeYear;
 				case 181:
-					return 1197673 + 252449*decadeYear;
+					return 1197673 + 25244.9*decadeYear;
 				case 182:
-					return 1450122 + 279827*decadeYear;
+					return 1450122 + 27982.7*decadeYear;
 				case 183:
-					return 1729949 + 187064*decadeYear;
+					return 1729949 + 18706.4*decadeYear;
 				case 184:
-					return 1917013 + 369596*decadeYear;
+					return 1917013 + 36959.6*decadeYear;
 				case 185:
 					return 2286609 + 0*decadeYear;
 				default:
@@ -220,7 +240,7 @@
 			}
 		},
 		baseFactoryCost: 17500,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
@@ -255,6 +275,11 @@
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
 
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
+
 			switch (decade) {
 				case 176:
 					return 100236 + 4001*decadeYear;
@@ -281,7 +306,7 @@
 			}
 		},
 		baseFactoryCost: 10000,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
@@ -312,9 +337,14 @@
 			iron: 1,
 			coal: 4
 		},
-		population: function(year) {
+		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
+
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
 
 			switch (decade) {
 				case 176:
@@ -342,7 +372,7 @@
 			}
 		},
 		baseFactoryCost: 15000,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
@@ -373,9 +403,14 @@
 			iron: 1,
 			coal: 4
 		},
-		population: function(year) {
+		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
+
+			if (year >= 1850) {
+				decade = 184;
+				decadeYear = year-1840+(month/12);
+			}
 
 			switch (decade) {
 				case 176:
@@ -403,7 +438,7 @@
 			}
 		},
 		baseFactoryCost: 15000,
-		factoryCostMultiplier: 1.8,
+		factoryCostMultiplier: 1.6,
 		numberOfFactories: function(type) {
 			var num = 0;
 			for (var i=0; i<factories.length; i++) {
