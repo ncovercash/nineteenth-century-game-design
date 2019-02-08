@@ -270,7 +270,7 @@
 		var factoryProfits = document.querySelectorAll(".factory-profit");
 
 		for (var i=0; i<factoryProfits.length; i++) {
-			var factoryType = factoryTypes[factoryCostButtons[i].parentElement.getAttribute("data-factory")];
+			var factoryType = factoryTypes[factoryProfits[i].parentElement.getAttribute("data-factory")];
 
 			factoryProfits[i].innerHTML = "Profit: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand).formatCommas(2)+"/worker/month";
 		}
