@@ -140,7 +140,6 @@
 								<h4 class="small-margin" id="city-name"></h4>
 								<h5 class="small-margin">Population <span id="city-population"></span></h5>
 
-								<p class="no-bottom-margin">Worker cost: <span id="worker-cost"></span></p>
 								<p class="no-top-margin">Wages: <span id="worker-wages"></span>/month</p>
 
 								<p class="no-bottom-margin">Proximity to water: <span id="proximity-to-water"></span></p>
@@ -217,7 +216,6 @@
 	var cityName = document.getElementById("city-name");
 	var cityPopulationElement = document.getElementById("city-population");
 
-	var cityWorkerCostElement = document.getElementById("worker-cost");
 	var cityWorkerWageElement = document.getElementById("worker-wages");
 
 	var cityProximityToWaterElement = document.getElementById("proximity-to-water");
@@ -225,6 +223,9 @@
 	var cityProximityToIronElement = document.getElementById("proximity-to-iron");
 
 	var cityBuildFactoryDisplay = document.getElementById("build-factory-display");
+
+	var cityNoExistingFactories = document.getElementById("no-existing-factories");
+	var cityExistingFactoryDisplay = document.getElementById("existing-factory-display");
 
 	var tickTimeout = undefined;
 
@@ -250,7 +251,6 @@
 		var selectedCity = cityDefinitions[cityParametersElement.getAttribute("data-city")];
 		cityPopulationElement.innerHTML = selectedCity.population(year, month).formatCommas(0);
 
-		cityWorkerCostElement.innerHTML = "$"+selectedCity.workerCost().formatCommas(2);
 		cityWorkerWageElement.innerHTML = "$"+selectedCity.wages.formatCommas(2);
 
 		var factoryCostButtons = document.querySelectorAll(".factory-cost");
@@ -349,7 +349,6 @@
 				cityParametersElement.setAttribute("data-city", city.shortName);
 				cityPopulationElement.innerHTML = city.population(year, month).formatCommas(0);
 
-				cityWorkerCostElement.innerHTML = "$"+city.workerCost().formatCommas(2);
 				cityWorkerWageElement.innerHTML = "$"+city.wages.formatCommas(2);
 
 				cityProximityToWaterElement.innerHTML = PROXIMITY_LABELS[city.proximity.water];
