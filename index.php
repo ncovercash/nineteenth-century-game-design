@@ -237,25 +237,25 @@
 
 				switch (decade) {
 					case 176:
-						return undefined + undefined*decadeYear;
+						return 566283 + 1591*decadeYear;
 					case 177:
-						return undefined + undefined*decadeYear;
+						return 582193 + 2718.8*decadeYear;
 					case 178:
-						return undefined + undefined*decadeYear;
+						return 609381 + 2145.1*decadeYear;
 					case 179:
-						return undefined + undefined*decadeYear;
+						return 630832 - 8397.6*decadeYear;
 					case 180:
-						return undefined + undefined*decadeYear;
+						return 546856 + 7578*decadeYear;
 					case 181:
-						return undefined + undefined*decadeYear;
+						return 622636 + 11133*decadeYear;
 					case 182:
-						return undefined + undefined*decadeYear;
+						return 733966 + 5189.6*decadeYear;
 					case 183:
-						return undefined + undefined*decadeYear;
+						return 785862 + 14939.9*decadeYear;
 					case 184:
-						return undefined + undefined*decadeYear;
+						return 935261 + 11800.1*decadeYear;
 					case 185:
-						return undefined + undefined*decadeYear;
+						return 1053262 + 0*decadeYear;
 					default:
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
