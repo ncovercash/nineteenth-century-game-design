@@ -41,23 +41,6 @@
 				font-weight: bold;
 			}
 
-
-			input[type=range] + .thumb {
-				background-color: #303f9f;
-			}
-
-			input[type=range]::-webkit-slider-thumb {
-				background-color: #303f9f;
-			}
-
-			input[type=range]::-moz-range-thumb {
-				background: #303f9f;
-			}
-
-			input[type=range]::-ms-thumb {
-				background: #303f9f;
-			}
-
 			.code-block {
 				font-family: monospace;
 				display: block;
@@ -79,12 +62,31 @@
 				height: 1.5em;
 			}
 
-			.switch label input[type=checkbox]+.lever:after {
-				background-color: #303f9f !important;
+			.row .col {
+				padding: 0.75rem;
 			}
 
-			.switch label input[type=checkbox]+.lever {
-				background-color: #9e9e9e !important;
+			button {
+				border-width: 1px;
+				border-style: solid;
+				border-color: #464c54;
+				
+				background-color: #dcdad5;
+
+				cursor: pointer;
+			}
+
+			button:hover {
+				background-color: #eeebe7;
+				border-width: 1px;
+			}
+
+			button:active, button.disabled {
+				color: #9c9a95;
+			}
+
+			button.disabled {
+				cursor: not-allowed;
 			}
 		</style>
 	</head>
