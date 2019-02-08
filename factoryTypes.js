@@ -10,7 +10,7 @@
 		productionPerWorker: function(city) {
 			return 3/(1.1-(0.1*city.proximity.water));
 		},
-		demand: 100
+		demand: 40
 	},
 	metals: {
 		name: "Metals",
@@ -23,7 +23,7 @@
 		productionPerWorker: function(city) {
 			return 2/(1.2-(0.05*city.proximity.iron)-(0.05*city.proximity.coal));
 		},
-		demand: 100
+		demand: 40
 	},
 	consumerGoods: {
 		name: "Consumer Goods",
@@ -36,6 +36,6 @@
 		productionPerWorker: function(city) {
 			return 4/(1.15-(0.05*city.proximity.water)-(0.05*city.proximity.iron)-(0.05*city.proximity.coal));
 		},
-		demand: 100
+		demand: 40
 	}
 }
