@@ -124,8 +124,8 @@
 								</p>
 							</div>
 							<div class="hide" data-city="manchester" id="city-parameters-selected">
-								<h4 id="city-name"></h4>
-								<h5>Population <span id="city-population"></span></h5>
+								<h4 class="small-margin" id="city-name"></h4>
+								<h5 class="small-margin">Population <span id="city-population"></span></h5>
 							</div>
 						</div>
 					</div>
