@@ -132,6 +132,10 @@
 								<p class="no-bottom-margin">Proximity to water: <span id="proximity-to-water"></span></p>
 								<p class="no-margin">Proximity to coal: <span id="proximity-to-coal"></span></p>
 								<p class="no-top-margin">Proximity to iron: <span id="proximity-to-iron"></span></p>
+
+								<div class="col s12" id="build-factory-display" style="border: 1px solid black">
+									<p class="no-top-margin"><b>New Factory</b></p>
+								</div>
 							</div>
 						</div>
 					</div>
