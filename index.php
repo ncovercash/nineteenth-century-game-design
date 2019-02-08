@@ -776,6 +776,38 @@
 				for (i=0; i<cityItems.length; i++) {
 					cityItems[i].style.stroke = "#f44336";
 				}
+
+				for (factory in factoryTypes) {
+					var factoryType = factoryTypes[factory];
+
+					var factoryWrapper = document.createElement("div");
+					factoryWrapper.classList.add("transient-city");
+					factoryWrapper.style.border = "1px solid black";
+					factoryWrapper.style.padding = "0.4em"
+
+					var factoryName = document.createElement("p");
+					factoryName.classList.add("no-margin");
+					factoryName.style.fontWeight = "bold";
+					factoryName.appendChild(document.createTextNode(factoryType.factoryName));
+					factoryWrapper.appendChild(factoryName);
+
+					var factoryDescription = document.createElement("p");
+					factoryDescription.classList.add("no-margin");
+					factoryDescription.appendChild(document.createTextNode(factoryType.description));
+					factoryWrapper.appendChild(factoryDescription);
+
+					var factoryProfit = document.createElement("p");
+					factoryProfit.classList.add("no-margin");
+					factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
+					factoryWrapper.appendChild(factoryProfit);
+
+					var factoryBuyButton = document.createElement("button");
+					factoryBuyButton.classList.add("factory-buy-button");
+					factoryBuyButton.appendChild(document.createTextNode("$"+(factoryType.factoryCost(city)).formatCommas(2)));
+					factoryWrapper.appendChild(factoryBuyButton);
+
+					cityParametersElement.appendChild(factoryWrapper);
+				}
 			};
 		}
 	};
