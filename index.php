@@ -238,6 +238,11 @@
 				year++;
 				month = 0;
 			}
+
+			for (var i=0; i<factories.length; i++) {
+				console.log("Factory "+i+" made $"+(factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers)));
+				cash += factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers);
+			}
 		}
 
 		dateElement.innerHTML = year + " " + MONTHS[month];
