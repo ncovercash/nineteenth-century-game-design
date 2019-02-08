@@ -620,13 +620,13 @@
 				cityProximityToCoalElement.innerHTML = PROXIMITY_LABELS[city.proximity.coal];
 				cityProximityToIronElement.innerHTML = PROXIMITY_LABELS[city.proximity.iron];
 
-				for (var i=0; i<clickableMapItems.length; i++) {
+				for (i=0; i<clickableMapItems.length; i++) {
 					clickableMapItems[i].style.stroke = "#ffffff";
 				}
 		
 				var cityItems = document.querySelectorAll(".map-clickable[data-city="+this.getAttribute("data-city")+"]");
 		
-				for (var i=0; i<cityItems.length; i++) {
+				for (i=0; i<cityItems.length; i++) {
 					cityItems[i].style.stroke = "#f44336";
 				}
 			};
