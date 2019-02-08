@@ -45,21 +45,22 @@
 		baseFactoryCost: 50000,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -111,21 +112,22 @@
 		baseFactoryCost: 40000,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -177,21 +179,22 @@
 		baseFactoryCost: 35000,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -243,21 +246,22 @@
 		baseFactoryCost: 17500,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -309,21 +313,22 @@
 		baseFactoryCost: 10000,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -375,21 +380,22 @@
 		baseFactoryCost: 15000,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -441,21 +447,22 @@
 		baseFactoryCost: 15000,
 		factoryCostMultiplier: 1.6,
 		factories: function(type) {
+			var cityShortName = this.shortName;
 			return factories.filter(function(factory) {
 				if (type == undefined) {
-					return factory.city == this.shortName;
+					return factory.city == cityShortName;
 				} else {
-					return factory.city == this.shortName && factory.type = type;
+					return factory.city == cityShortName && factory.type == type;
 				}
 			});
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type);
+			return this.factories(type).length;
 		},
 		numberOfWorkers: function() {
 			return this.factories().reduce(function(a,b) {
 				return a+b.workers;
-			});
+			}, 0);
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
