@@ -509,6 +509,13 @@
 
 	var cityName = document.getElementById("city-name");
 	var cityPopulationElement = document.getElementById("city-population");
+
+	var cityWorkerCostElement = document.getElementById("worker-cost");
+
+	var cityProximityToWaterElement = document.getElementById("proximity-to-water");
+	var cityProximityToCoalElement = document.getElementById("proximity-to-coal");
+	var cityProximityToIronElement = document.getElementById("proximity-to-iron");
+
 	var tickTimeout = undefined;
 
 	function tick() {
