@@ -127,7 +127,8 @@
 								<h4 class="small-margin" id="city-name"></h4>
 								<h5 class="small-margin">Population <span id="city-population"></span></h5>
 
-								<p>Worker cost: <span id="worker-cost"></span></p>
+								<p class="no-bottom-margin">Worker cost: <span id="worker-cost"></span></p>
+								<p class="no-top-margin">Wages: <span id="worker-wages"></span>/month</p>
 
 								<p class="no-bottom-margin">Proximity to water: <span id="proximity-to-water"></span></p>
 								<p class="no-margin">Proximity to coal: <span id="proximity-to-coal"></span></p>
@@ -194,6 +195,7 @@
 	var cityPopulationElement = document.getElementById("city-population");
 
 	var cityWorkerCostElement = document.getElementById("worker-cost");
+	var cityWorkerWageElement = document.getElementById("worker-wages");
 
 	var cityProximityToWaterElement = document.getElementById("proximity-to-water");
 	var cityProximityToCoalElement = document.getElementById("proximity-to-coal");
@@ -226,6 +228,7 @@
 		cityPopulationElement.innerHTML = selectedCity.population(year, month).formatCommas(0);
 
 		cityWorkerCostElement.innerHTML = "$"+selectedCity.workerCost().formatCommas(2);
+		cityWorkerWageElement.innerHTML = "$"+selectedCity.wages.formatCommas(2);
 
 		var factoryCostButtons = document.querySelectorAll(".factory-cost");
 
@@ -324,6 +327,7 @@
 				cityPopulationElement.innerHTML = city.population(year, month).formatCommas(0);
 
 				cityWorkerCostElement.innerHTML = "$"+city.workerCost().formatCommas(2);
+				cityWorkerWageElement.innerHTML = "$"+city.wages.formatCommas(2);
 
 				cityProximityToWaterElement.innerHTML = PROXIMITY_LABELS[city.proximity.water];
 				cityProximityToCoalElement.innerHTML = PROXIMITY_LABELS[city.proximity.coal];
