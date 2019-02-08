@@ -203,6 +203,8 @@
 		}
 	};
 
+	var factories = [];
+
 	var cityDefinitions = {
 		milan: {
 			shortName: "milan",
