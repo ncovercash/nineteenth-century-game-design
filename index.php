@@ -76,9 +76,18 @@
 				cursor: pointer;
 			}
 
+			button.red-button {
+				background-color: #e57373;
+				border-color: #b71c1c;
+			}
+
 			button:hover {
 				background-color: #eeebe7;
 				border-width: 1px;
+			}
+
+			button.red-button:hover {
+				background-color: #ef9a9a;
 			}
 
 			button:active, button.disabled {
@@ -87,6 +96,10 @@
 
 			button.disabled {
 				cursor: not-allowed;
+			}
+
+			button.disabled.red-button {
+				color: #b71c1c;
 			}
 		</style>
 	</head>
