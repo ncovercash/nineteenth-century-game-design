@@ -277,11 +277,14 @@
 
 		cashElement.innerHTML = "$"+cash.formatCommas();
 
-		if (dateSpeed != 0) {
-			console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
-			tickTimeout = setTimeout(tick, 2000-dateSpeed);
+		if (selectedCity.numberOfFactories() == 0) {
+			cityNoExistingFactories.classList.remove("hide");
 		} else {
-			console.log("PAUSED");
+			cityNoExistingFactories.classList.add("hide");
+		}
+
+		cashElement.innerHTML = "$"+cash.formatCommas();
+
 		if (doTick) {
 			if (dateSpeed != 0) {
 				console.log("Setting timeout for "+(2000-dateSpeed)+"ms");
@@ -482,6 +485,12 @@
 		
 				for (i=0; i<cityItems.length; i++) {
 					cityItems[i].style.stroke = "#f44336";
+				}
+
+				if (city.numberOfFactories() == 0) {
+					cityNoExistingFactories.classList.remove("hide");
+				} else {
+					cityNoExistingFactories.classList.add("hide");
 				}
 
 				for (factory in factoryTypes) {
