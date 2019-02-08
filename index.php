@@ -177,7 +177,7 @@
 					case 185:
 						return undefined + undefined*decadeYear;
 					default:
-						throw "Year "+year+" is not known for Milan, Italy.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
@@ -217,7 +217,7 @@
 					case 185:
 						return undefined + undefined*decadeYear;
 					default:
-						throw "Year "+year+" is not known for Essen, Prussia.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
@@ -257,7 +257,7 @@
 					case 185:
 						return undefined + undefined*decadeYear;
 					default:
-						throw "Year "+year+" is not known for Paris, France.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
@@ -297,7 +297,7 @@
 					case 185:
 						return 2286609 + 0*decadeYear;
 					default:
-						throw "Year "+year+" is not known for London, England.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
@@ -337,7 +337,7 @@
 					case 185:
 						return 1037001 + 0*decadeYear;
 					default:
-						throw "Year "+year+" is not known for Manchester, England.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
@@ -377,7 +377,7 @@
 					case 185:
 						return 232638 + 0*decadeYear;
 					default:
-						throw "Year "+year+" is not known for Birmingham, England.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
@@ -417,7 +417,7 @@
 					case 185:
 						return 159945 + 0*decadeYear;
 					default:
-						throw "Year "+year+" is not known for Bristol, England.";
+						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
 			baseFactoryCost: undefined,
