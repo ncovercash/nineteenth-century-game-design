@@ -7,6 +7,7 @@
 			iron: 5,
 			coal: 1
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -43,23 +44,22 @@
 		},
 		baseFactoryCost: 50000,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -73,6 +73,7 @@
 			iron: 4,
 			coal: 5
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -109,23 +110,22 @@
 		},
 		baseFactoryCost: 40000,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -139,6 +139,7 @@
 			iron: 1,
 			coal: 2
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -175,23 +176,22 @@
 		},
 		baseFactoryCost: 35000,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -205,6 +205,7 @@
 			iron: 1,
 			coal: 5
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -241,23 +242,22 @@
 		},
 		baseFactoryCost: 17500,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -271,6 +271,7 @@
 			iron: 1,
 			coal: 5
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -307,23 +308,22 @@
 		},
 		baseFactoryCost: 10000,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -337,6 +337,7 @@
 			iron: 1,
 			coal: 4
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -373,23 +374,22 @@
 		},
 		baseFactoryCost: 15000,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
@@ -403,6 +403,7 @@
 			iron: 1,
 			coal: 4
 		},
+		wages: 100,
 		population: function(year, month) {
 			var decade = Math.floor(year/10);
 			var decadeYear = year%10+(month/12);
@@ -439,23 +440,22 @@
 		},
 		baseFactoryCost: 15000,
 		factoryCostMultiplier: 1.6,
-		numberOfFactories: function(type) {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName && factories[i].type == type) {
-					num++;
+		factories: function(type) {
+			return factories.filter(function(factory) {
+				if (type == undefined) {
+					return factory.city == this.shortName;
+				} else {
+					return factory.city == this.shortName && factory.type = type;
 				}
-			}
-			return num;
+			});
+		},
+		numberOfFactories: function(type) {
+			return this.factories(type);
 		},
 		numberOfWorkers: function() {
-			var num = 0;
-			for (var i=0; i<factories.length; i++) {
-				if (factories[i].city == this.shortName) {
-					num += factories[i].numberOfWorkers;
-				}
-			}
-			return num;
+			return this.factories().reduce(function(a,b) {
+				return a+b.workers;
+			});
 		},
 		workerCost: function() {
 			return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
