@@ -336,6 +336,118 @@
 		}
 	}
 
+	function factoryBuyButtonClick() {
+		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
+
+		var factoryType = factoryTypes[this.parentElement.getAttribute("data-factory")];
+
+		if (cash < factoryType.factoryCost(city)) {
+			console.log("Ignoring factory purchase as not enough money");
+			return;
+		}
+
+		cash -= factoryType.factoryCost(city);
+
+		console.log("Charging "+factoryType.factoryCost(city));
+
+		var factory = {
+			id: factories.length,
+			city: city.shortName,
+			type: factoryType.shortName,
+			workers: 1
+		};
+		factories.push(factory);
+
+		var factoryWrapper = document.createElement("div");
+		factoryWrapper.classList.add("transient-city");
+		factoryWrapper.classList.add("transient-factory");
+		factoryWrapper.setAttribute("data-id", factory.id);
+		factoryWrapper.setAttribute("data-factory", factory.type);
+		factoryWrapper.style.border = "1px solid black";
+		factoryWrapper.style.padding = "0.4em"
+
+		var factoryName = document.createElement("p");
+		factoryName.classList.add("no-margin");
+		factoryName.style.fontWeight = "bold";
+		factoryName.appendChild(document.createTextNode(factoryType.name));
+		factoryWrapper.appendChild(factoryName);
+
+		var factoryWorkers = document.createElement("p");
+		factoryWorkers.classList.add("no-margin");
+		factoryWorkers.classList.add("factory-workers")
+		factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers));
+		factoryWrapper.appendChild(factoryWorkers);
+
+		var factoryWages = document.createElement("p");
+		factoryWages.classList.add("no-margin");
+		factoryWages.classList.add("factory-wages")
+		factoryWages.appendChild(document.createTextNode("Wages: $"+(city.wages*factory.workers).formatCommas(2)+"/month"));
+		factoryWrapper.appendChild(factoryWages);
+
+		var factoryProfit = document.createElement("p");
+		factoryProfit.classList.add("no-margin");
+		factoryProfit.classList.add("factory-profit")
+		factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
+		factoryWrapper.appendChild(factoryProfit);
+
+		var factoryRealProfit = document.createElement("p");
+		factoryRealProfit.classList.add("no-margin");
+		factoryRealProfit.classList.add("factory-real-profit")
+		factoryRealProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand*factory.workers).formatCommas(2)+"/month"));
+		factoryWrapper.appendChild(factoryRealProfit);
+
+		var factoryNet = document.createElement("p");
+		factoryNet.classList.add("no-margin");
+		factoryNet.classList.add("factory-net")
+		factoryNet.appendChild(document.createTextNode("Net: $"+(factoryType.productionPerWorker(city)*factoryType.demand*factory.workers-(city.wages*factory.workers)).formatCommas(2)+"/month"));
+		factoryWrapper.appendChild(factoryNet);
+
+		var factoryAddWorkerButton = document.createElement("button");
+		factoryAddWorkerButton.classList.add("factory-add-worker-button");
+		factoryAddWorkerButton.appendChild(document.createTextNode("Add Worker"));
+		factoryAddWorkerButton.appendChild(document.createElement("br"));
+		factoryAddWorkerButton.appendChild(document.createTextNode("$"+city.workerCost().formatCommas(2)));
+
+		if (city.workerCost() > cash) {
+			factoryAddWorkerButton.classList.add("disabled");
+		} else {
+			factoryAddWorkerButton.classList.remove("disabled");
+		}
+
+		factoryAddWorkerButton.onclick = addWorkerClick;
+		factoryWrapper.appendChild(factoryAddWorkerButton);
+
+		var factoryRemoveWorkerButton = document.createElement("button");
+		factoryRemoveWorkerButton.classList.add("factory-remove-worker-button");
+		factoryRemoveWorkerButton.classList.add("red-button");
+		factoryRemoveWorkerButton.appendChild(document.createTextNode("Remove Worker"));
+		factoryRemoveWorkerButton.appendChild(document.createElement("br"));
+		factoryRemoveWorkerButton.appendChild(document.createTextNode("+$"+(city.workerCost()*.6).formatCommas(2)));
+
+		if (factory.workers == 0) {
+			factoryRemoveWorkerButton.classList.add("disabled");
+		} else {
+			factoryRemoveWorkerButton.classList.remove("disabled");
+		}
+
+		factoryRemoveWorkerButton.onclick = removeWorkerClick;
+		factoryWrapper.appendChild(factoryRemoveWorkerButton);
+
+		var factorySellButton = document.createElement("button");
+		factorySellButton.classList.add("factory-sell-button");
+		factorySellButton.classList.add("red-button");
+		factorySellButton.appendChild(document.createTextNode("Sell Factory"));
+		factorySellButton.appendChild(document.createElement("br"));
+		factorySellButton.appendChild(document.createTextNode("+$"+(0.6*factoryType.factoryCost(city)/city.factoryCostMultiplier).formatCommas(2)));
+
+		factorySellButton.onclick = factorySellClick;
+		factoryWrapper.appendChild(factorySellButton);
+
+		cityExistingFactoryDisplay.appendChild(factoryWrapper);
+
+		tick(false);
+	}
+
 	function initClickableMapItems() {
 		var clickableMapItems = document.getElementsByClassName("map-clickable");
 
@@ -408,6 +520,8 @@
 					} else {
 						factoryBuyButton.classList.remove("disabled");
 					}
+
+					factoryBuyButton.onclick = factoryBuyButtonClick;
 
 					factoryWrapper.appendChild(factoryBuyButton);
 
