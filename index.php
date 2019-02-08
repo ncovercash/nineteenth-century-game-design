@@ -592,6 +592,12 @@
 
 		for (var i=0; i<clickableMapItems.length; i++) {
 			clickableMapItems[i].onclick = function() {
+				var transientItems = document.querySelectorAll(".transient-city");
+
+				for (var i=0; i<transientItems.length; i++) {
+					transientItems[i].outerHTML = "";
+				}
+
 				var city = cityDefinitions[this.getAttribute("data-city")];
 
 				cityParametersNotSelectedElement.classList.add("hide");
