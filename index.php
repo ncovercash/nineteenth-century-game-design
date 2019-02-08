@@ -126,6 +126,12 @@
 							<div class="hide" data-city="manchester" id="city-parameters-selected">
 								<h4 class="small-margin" id="city-name"></h4>
 								<h5 class="small-margin">Population <span id="city-population"></span></h5>
+
+								<p>Worker cost: <span id="worker-cost"></span></p>
+
+								<p class="no-bottom-margin">Proximity to water: <span id="proximity-to-water"></span></p>
+								<p class="no-margin">Proximity to coal: <span id="proximity-to-coal"></span></p>
+								<p class="no-top-margin">Proximity to iron: <span id="proximity-to-iron"></span></p>
 							</div>
 						</div>
 					</div>
