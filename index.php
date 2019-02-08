@@ -154,6 +154,15 @@
 	};
 
 	var exportDefinitions = {
+	const PROXIMITY_LABELS = {
+		1: "Very Far",
+		2: "Far",
+		3: "Nearby",
+		4: "Close",
+		5: "Extremely Close"
+	};
+
+	var factoryTypes = {
 		textile: {
 			name: "Textiles",
 			description: {
