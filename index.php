@@ -134,6 +134,16 @@
 								<p class="no-margin">Proximity to coal: <span id="proximity-to-coal"></span></p>
 								<p class="no-top-margin">Proximity to iron: <span id="proximity-to-iron"></span></p>
 
+								<div class="col s12" id="existing-factory-display" style="border: 1px solid black">
+									<p class="no-top-margin"><b>Factories</b></p>
+
+									<p id="no-existing-factories" class="center align-center grey-text">
+										<i>
+											There are no factories here, build some first!
+										</i>
+									</p>
+								</div>
+
 								<div class="col s12" id="build-factory-display" style="border: 1px solid black">
 									<p class="no-top-margin"><b>New Factory</b></p>
 								</div>
