@@ -616,6 +616,9 @@
 
 				cityWorkerCostElement.innerHTML = "$"+city.workerCost().formatCommas(2);
 
+				cityProximityToWaterElement.innerHTML = PROXIMITY_LABELS[city.proximity.water];
+				cityProximityToCoalElement.innerHTML = PROXIMITY_LABELS[city.proximity.coal];
+				cityProximityToIronElement.innerHTML = PROXIMITY_LABELS[city.proximity.iron];
 
 				for (var i=0; i<clickableMapItems.length; i++) {
 					clickableMapItems[i].style.stroke = "#ffffff";
