@@ -142,7 +142,7 @@
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
-	const CITY_DEFINITIONS = {
+	var cityDefinitions = {
 		milan: {
 			shortName: "milan",
 			name: "Milan, Italy",
@@ -462,7 +462,7 @@
 			return;
 		}
 
-		var selectedCity = CITY_DEFINITIONS[document.getElementById("city-parameters-selected").getAttribute("data-city")];
+		var selectedCity = cityDefinitions[document.getElementById("city-parameters-selected").getAttribute("data-city")];
 		document.getElementById("city-population").innerHTML = selectedCity.population(year, month).formatCommas(0);
 
 		cashElement.innerHTML = "$"+cash.formatCommas();
@@ -524,7 +524,7 @@
 
 		for (var i=0; i<clickableMapItems.length; i++) {
 			clickableMapItems[i].onclick = function() {
-				var city = CITY_DEFINITIONS[this.getAttribute("data-city")];
+				var city = cityDefinitions[this.getAttribute("data-city")];
 
 				document.getElementById("city-parameters-no-selection").classList.add("hide");
 				document.getElementById("city-parameters-selected").classList.remove("hide");
