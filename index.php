@@ -552,6 +552,52 @@
 		tick(false);
 	}
 
+	function addWorkerClick() {
+		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
+		var factory = factories[this.parentElement.getAttribute("data-id")];
+
+		if (city.workerCost() > cash) {
+			return;
+		}
+
+		cash -= city.workerCost();
+		factory.workers++;
+
+		tick(false);
+	}
+	function removeWorkerClick() {
+		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
+		var factory = factories[this.parentElement.getAttribute("data-id")];
+
+		if (factory.workers == 0) {
+			return;
+		}
+
+		cash += city.workerCost()*0.6;
+		factory.workers--;
+
+		tick(false);
+	}
+	function factorySellClick() {
+		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
+		var factory = factories[this.parentElement.getAttribute("data-id")];
+
+		if (factory.workers > 0) {
+			alert("You must remove all workers before you can sell this factory.");
+			return;
+		}
+
+		cash += 0.6*factoryTypes[factory.type].factoryCost(city)/city.factoryCostMultiplier;
+		factories.splice(this.parentElement.getAttribute("data-id"), 1);
+
+		// reset other IDs
+		for (var i = 0; i < factories.length; i++) {
+			factories[i].id = i;
+		}
+
+		tick(false);
+	}
+
 	function initClickableMapItems() {
 		var clickableMapItems = document.getElementsByClassName("map-clickable");
 
