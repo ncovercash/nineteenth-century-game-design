@@ -95,7 +95,7 @@
 				<h5 class="header center small-margin">Noah Overcash and Harry Charles</h5>
 				<h5 class="header center no-top-margin">Mr. Wallace's AP European History, Period 3A</h5>
 
-				<p>Instructions go here, try to get the most money by the year 1850</p>
+				<p>Instructions go here, try to get the most money by the year 1860</p>
 			</div>
 			<div class="divider"></div>
 			<div class="section">
@@ -481,8 +481,8 @@
 
 		dateElement.innerHTML = year + " " + MONTHS[month];
 
-		if (year == 1850) {
-			console.log("Ending game, year 1850 reached");
+		if (year == 1860) {
+			console.log("Ending game, year 1860 reached");
 			endGame();
 			return;
 		}
