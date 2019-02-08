@@ -243,8 +243,29 @@
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 50000,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 		essen: {
 			shortName: "essen",
@@ -283,8 +304,29 @@
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 40000,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 		paris: {
 			shortName: "paris",
@@ -316,15 +358,36 @@
 					case 183:
 						return 785862 + 14939.9*decadeYear;
 					case 184:
-						return 935261 + 11800.1*decadeYear;
+						return 935261 + 11800.05*decadeYear;
 					case 185:
 						return 1053262 + 0*decadeYear;
 					default:
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 35000,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 		london: {
 			shortName: "london",
@@ -363,8 +426,29 @@
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 17500,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 		manchester: {
 			shortName: "manchester",
@@ -403,8 +487,29 @@
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 10000,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 		birmingham: {
 			shortName: "birmingham",
@@ -443,8 +548,29 @@
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 15000,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 		bristol: {
 			shortName: "bristol",
@@ -483,8 +609,29 @@
 						throw "Year "+year+" is not known for "+this.name+".";
 				}
 			},
-			baseFactoryCost: undefined,
-			factoryCostMultiplier: 1.1
+			baseFactoryCost: 15000,
+			factoryCostMultiplier: 1.8,
+			numberOfFactories: function(type) {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName && factories[i].type == type) {
+						num++;
+					}
+				}
+				return num;
+			},
+			numberOfWorkers: function() {
+				var num = 0;
+				for (var i=0; i<factories.length; i++) {
+					if (factories[i].city == this.shortName) {
+						num += factories[i].numberOfWorkers;
+					}
+				}
+				return num;
+			},
+			workerCost: function() {
+				return 2500*((1+1000*this.numberOfWorkers()/this.population(year, month))**2);
+			}
 		},
 	};
 
