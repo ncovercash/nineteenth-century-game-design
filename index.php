@@ -466,6 +466,11 @@
 	var speedSliderElement = document.getElementById("speedSlider");
 	var speedValueElement = document.getElementById("speed");
 
+	var cityParametersNotSelectedElement = document.getElementById("city-parameters-no-selection");
+	var cityParametersElement = document.getElementById("city-parameters-selected");
+
+	var cityName = document.getElementById("city-name");
+	var cityPopulationElement = document.getElementById("city-population");
 	var tickTimeout = undefined;
 
 	function tick() {
@@ -487,8 +492,8 @@
 			return;
 		}
 
-		var selectedCity = cityDefinitions[document.getElementById("city-parameters-selected").getAttribute("data-city")];
-		document.getElementById("city-population").innerHTML = selectedCity.population(year, month).formatCommas(0);
+		var selectedCity = cityDefinitions[cityParametersElement.getAttribute("data-city")];
+		cityPopulationElement.innerHTML = selectedCity.population(year, month).formatCommas(0);
 
 		cashElement.innerHTML = "$"+cash.formatCommas();
 
@@ -551,12 +556,15 @@
 			clickableMapItems[i].onclick = function() {
 				var city = cityDefinitions[this.getAttribute("data-city")];
 
-				document.getElementById("city-parameters-no-selection").classList.add("hide");
-				document.getElementById("city-parameters-selected").classList.remove("hide");
+				cityParametersNotSelectedElement.classList.add("hide");
+				cityParametersElement.classList.remove("hide");
 
-				document.getElementById("city-name").innerHTML = city.name;
-				document.getElementById("city-parameters-selected").setAttribute("data-city", city.shortName);
-				document.getElementById("city-population").innerHTML = city.population(year, month).formatCommas(0);
+				cityName.innerHTML = city.name;
+				cityParametersElement.setAttribute("data-city", city.shortName);
+				cityPopulationElement.innerHTML = city.population(year, month).formatCommas(0);
+
+				cityWorkerCostElement.innerHTML = "$"+city.workerCost().formatCommas(2);
+
 
 				for (var i=0; i<clickableMapItems.length; i++) {
 					clickableMapItems[i].style.stroke = "#ffffff";
