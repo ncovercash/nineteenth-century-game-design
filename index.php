@@ -225,6 +225,30 @@
 		var selectedCity = cityDefinitions[cityParametersElement.getAttribute("data-city")];
 		cityPopulationElement.innerHTML = selectedCity.population(year, month).formatCommas(0);
 
+		cityWorkerCostElement.innerHTML = "$"+selectedCity.workerCost().formatCommas(2);
+
+		var factoryCostButtons = document.querySelectorAll(".factory-cost");
+
+		for (var i=0; i<factoryCostButtons.length; i++) {
+			var factoryType = factoryTypes[factoryCostButtons[i].parentElement.getAttribute("data-factory")];
+
+			factoryCostButtons[i].innerHTML = "$"+(factoryType.factoryCost(selectedCity)).formatCommas(2);
+
+			if (factoryType.factoryCost(selectedCity) > cash) {
+				factoryCostButtons[i].classList.add("disabled");
+			} else {
+				factoryCostButtons[i].classList.remove("disabled");
+			}
+		}
+
+		var factoryProfits = document.querySelectorAll(".factory-profit");
+
+		for (var i=0; i<factoryProfits.length; i++) {
+			var factoryType = factoryTypes[factoryCostButtons[i].parentElement.getAttribute("data-factory")];
+
+			factoryProfits[i].innerHTML = "Profit: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand).formatCommas(2)+"/worker/month";
+		}
+
 		cashElement.innerHTML = "$"+cash.formatCommas();
 
 		if (dateSpeed != 0) {
@@ -320,6 +344,7 @@
 
 					var factoryWrapper = document.createElement("div");
 					factoryWrapper.classList.add("transient-city");
+					factoryWrapper.setAttribute("data-factory", factoryType.shortName);
 					factoryWrapper.style.border = "1px solid black";
 					factoryWrapper.style.padding = "0.4em"
 
@@ -336,12 +361,21 @@
 
 					var factoryProfit = document.createElement("p");
 					factoryProfit.classList.add("no-margin");
+					factoryProfit.classList.add("factory-profit")
 					factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
 					factoryWrapper.appendChild(factoryProfit);
 
 					var factoryBuyButton = document.createElement("button");
 					factoryBuyButton.classList.add("factory-buy-button");
+					factoryBuyButton.classList.add("factory-cost")
 					factoryBuyButton.appendChild(document.createTextNode("$"+(factoryType.factoryCost(city)).formatCommas(2)));
+
+					if (factoryType.factoryCost(city) > cash) {
+						factoryBuyButton.classList.add("disabled");
+					} else {
+						factoryBuyButton.classList.remove("disabled");
+					}
+
 					factoryWrapper.appendChild(factoryBuyButton);
 
 					cityBuildFactoryDisplay.appendChild(factoryWrapper);
