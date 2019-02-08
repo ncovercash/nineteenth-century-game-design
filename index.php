@@ -7,6 +7,11 @@
 		
 		<link href="materialize.min.css.php" rel="stylesheet"/>
 		<style type="text/css">
+			.small-margin {
+				margin-top: 0.2em !important;
+				margin-bottom: 0.2em !important;
+			}
+
 			.no-margin {
 				margin: 0 !important;
 			}
