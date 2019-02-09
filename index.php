@@ -188,6 +188,15 @@
 		5: "Extremely Close"
 	};
 
+	var transactions = [
+		{
+			amount: 10000,
+			year: 1760,
+			month: 0,
+			reason: "Initial loan"
+		}
+	];
+
 	var factoryTypes = <?= file_get_contents("factoryTypes.js") ?>;
 
 	var factories = [];
