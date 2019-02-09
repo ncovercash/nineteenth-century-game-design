@@ -249,8 +249,14 @@
 			}
 
 			for (var i=0; i<factories.length; i++) {
-				console.log("Factory "+i+" made $"+(factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers)));
 				cash += factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers);
+
+				transactions.push({
+					amount: factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers),
+					year: year,
+					month: month,
+					reason: factoryTypes[factories[i].type].factoryName+" in "+cityDefinitions[factories[i].city].name+" revenue."
+				});
 			}
 		}
 
@@ -460,6 +466,12 @@
 		}
 
 		cash -= factoryType.factoryCost(city);
+		transactions.push({
+			amount: -factoryType.factoryCost(city),
+			year: year,
+			month: month,
+			reason: "Construction of a "+factoryType.factoryName+" in "+city.name
+		});
 
 		console.log("Charging "+factoryType.factoryCost(city));
 
@@ -570,6 +582,12 @@
 		}
 
 		cash -= city.workerCost();
+		transactions.push({
+			amount: -city.workerCost(),
+			year: year,
+			month: month,
+			reason: "Hiring of a worker for "+factoryTypes[factory.type].factoryName+" in "+city.name
+		});
 		factory.workers++;
 
 		tick(false);
@@ -583,6 +601,12 @@
 		}
 
 		cash += city.workerCost()*0.6;
+		transactions.push({
+			amount: city.workerCost()*0.6,
+			year: year,
+			month: month,
+			reason: "Firing of a worker for "+factoryTypes[factory.type].factoryName+" in "+city.name
+		});
 		factory.workers--;
 
 		tick(false);
@@ -597,6 +621,12 @@
 		}
 
 		cash += 0.6*factoryTypes[factory.type].factoryCost(city)/city.factoryCostMultiplier;
+		transactions.push({
+			amount: city.workerCost()*0.6,
+			year: year,
+			month: month,
+			reason: "Selling of a "+factoryTypes[factory.type].factoryName+" in "+city.name
+		});
 		factories.splice(this.parentElement.getAttribute("data-id"), 1);
 
 		// reset other IDs
