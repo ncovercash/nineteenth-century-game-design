@@ -194,6 +194,8 @@
 		5: "Extremely Close"
 	};
 
+	var maxFactoryWorkers = 5;
+
 	var transactions = [
 		{
 			amount: 10000,
@@ -328,7 +330,7 @@
 			var factoryWorkers = document.createElement("p");
 			factoryWorkers.classList.add("no-margin");
 			factoryWorkers.classList.add("factory-workers")
-			factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers));
+			factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+maxFactoryWorkers));
 			factoryWrapper.appendChild(factoryWorkers);
 
 			var factoryWages = document.createElement("p");
@@ -361,7 +363,7 @@
 			factoryAddWorkerButton.appendChild(document.createElement("br"));
 			factoryAddWorkerButton.appendChild(document.createTextNode("$"+selectedCity.workerCost().formatCommas(2)));
 
-			if (selectedCity.workerCost() > cash) {
+			if (selectedCity.workerCost() > cash || factory.workers == maxFactoryWorkers) {
 				factoryAddWorkerButton.classList.add("disabled");
 			} else {
 				factoryAddWorkerButton.classList.remove("disabled");
@@ -506,7 +508,7 @@
 		var factoryWorkers = document.createElement("p");
 		factoryWorkers.classList.add("no-margin");
 		factoryWorkers.classList.add("factory-workers")
-		factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers));
+		factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+maxFactoryWorkers));
 		factoryWrapper.appendChild(factoryWorkers);
 
 		var factoryWages = document.createElement("p");
@@ -539,7 +541,7 @@
 		factoryAddWorkerButton.appendChild(document.createElement("br"));
 		factoryAddWorkerButton.appendChild(document.createTextNode("$"+city.workerCost().formatCommas(2)));
 
-		if (city.workerCost() > cash) {
+		if (city.workerCost() > cash || factory.workers == maxFactoryWorkers) {
 			factoryAddWorkerButton.classList.add("disabled");
 		} else {
 			factoryAddWorkerButton.classList.remove("disabled");
@@ -583,7 +585,7 @@
 		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
 		var factory = factories[this.parentElement.getAttribute("data-id")];
 
-		if (city.workerCost() > cash) {
+		if (city.workerCost() > cash || factory.workers == maxFactoryWorkers) {
 			return;
 		}
 
@@ -708,7 +710,7 @@
 					var factoryWorkers = document.createElement("p");
 					factoryWorkers.classList.add("no-margin");
 					factoryWorkers.classList.add("factory-workers")
-					factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers));
+					factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+maxFactoryWorkers));
 					factoryWrapper.appendChild(factoryWorkers);
 
 					var factoryWages = document.createElement("p");
@@ -741,7 +743,7 @@
 					factoryAddWorkerButton.appendChild(document.createElement("br"));
 					factoryAddWorkerButton.appendChild(document.createTextNode("$"+city.workerCost().formatCommas(2)));
 
-					if (city.workerCost() > cash) {
+					if (city.workerCost() > cash || factory.workers == maxFactoryWorkers) {
 						factoryAddWorkerButton.classList.add("disabled");
 					} else {
 						factoryAddWorkerButton.classList.remove("disabled");
