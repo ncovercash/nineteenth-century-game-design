@@ -348,13 +348,13 @@
 			var factoryProfit = document.createElement("p");
 			factoryProfit.classList.add("no-margin");
 			factoryProfit.classList.add("factory-profit")
-			factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand).formatCommas(2)+"/worker/month"));
+			factoryProfit.appendChild(document.createTextNode("Revenue: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand).formatCommas(2)+"/worker/month"));
 			factoryWrapper.appendChild(factoryProfit);
 
 			var factoryRealProfit = document.createElement("p");
 			factoryRealProfit.classList.add("no-margin");
 			factoryRealProfit.classList.add("factory-real-profit")
-			factoryRealProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand*factory.workers).formatCommas(2)+"/month"));
+			factoryRealProfit.appendChild(document.createTextNode("Revenue: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand*factory.workers).formatCommas(2)+"/month"));
 			factoryWrapper.appendChild(factoryRealProfit);
 
 			var factoryNet = document.createElement("p");
@@ -619,7 +619,7 @@
 					var factoryProfit = document.createElement("p");
 					factoryProfit.classList.add("no-margin");
 					factoryProfit.classList.add("factory-profit")
-					factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
+					factoryProfit.appendChild(document.createTextNode("Revenue: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
 					factoryWrapper.appendChild(factoryProfit);
 
 					var factoryBuyButton = document.createElement("button");
