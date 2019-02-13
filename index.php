@@ -369,7 +369,7 @@
 			factoryAddWorkerButton.appendChild(document.createElement("br"));
 			factoryAddWorkerButton.appendChild(document.createTextNode("$"+selectedCity.workerCost().formatCommas(2)));
 
-			if (selectedCity.workerCost() > cash || factory.workers == maxFactoryWorkers) {
+			if (selectedCity.workerCost() > cash || factory.workers >= (factory.workersPerFactory*factory.number)) {
 				factoryAddWorkerButton.classList.add("disabled");
 			} else {
 				factoryAddWorkerButton.classList.remove("disabled");
