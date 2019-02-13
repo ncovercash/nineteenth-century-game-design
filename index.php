@@ -128,10 +128,10 @@
 						<div class="col s12">
 							<h4 class="no-top-margin" id="cash"></h4>
 							<h4 class="no-margin"><span id="year"></span></h4>
-							<p class="no-top-margin" id="speed">12 seconds/year</p>
+							<p class="no-top-margin" id="speed">PAUSED</p>
 
 							<label for="speedSlider">Speed</label>
-							<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="1000" />
+							<input type="range" class="col s12" id="speedSlider" min="0" max="1900" step="100" value="0" />
 						</div>
 
 						<div class="col s12" id="city-parameters" style="border: 1px solid black;">
@@ -219,7 +219,7 @@
 	var dateElement = document.getElementById("year");
 
 	var paused = false;
-	var dateSpeed = 1000;
+	var dateSpeed = 0;
 	var lastTick = Date.now();
 
 	var speedSliderElement = document.getElementById("speedSlider");
