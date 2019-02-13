@@ -639,10 +639,16 @@
 
 					cityBuildFactoryDisplay.appendChild(factoryWrapper);
 				}
+
+				tick(false);
 			};
 		}
 	};
 	initClickableMapItems();
 
-	tick();
+	tick(false);
+
+	function endGame() {
+		alert("Congratulations!  You finished the game with $"+cash.formatCommas(2)+"!");
+	}
 </script>
