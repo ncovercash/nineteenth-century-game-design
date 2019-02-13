@@ -12,6 +12,10 @@
 				margin-bottom: 0.2em !important;
 			}
 
+			svg {
+				touch-action: manipulation;
+			}
+
 			.no-margin {
 				margin: 0 !important;
 			}
@@ -74,6 +78,8 @@
 				background-color: #dcdad5;
 
 				cursor: pointer;
+
+				touch-action: manipulation;
 			}
 
 			button.red-button {
