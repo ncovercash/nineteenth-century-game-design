@@ -207,8 +207,6 @@
 
 	var factoryTypes = <?= file_get_contents("factoryTypes.js") ?>;
 
-	var factories = [];
-
 	var cityDefinitions = <?= file_get_contents("cityDefinitions.js") ?>;
 
 	const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -249,22 +247,27 @@
 	function tick(doTick=true) {
 		lastTick = Date.now();
 
-		if (!paused) {
+		if (!paused && doTick) {
 			month++;
 			if (month >= 12) {
 				year++;
 				month = 0;
 			}
 
-			for (var i=0; i<factories.length; i++) {
-				cash += factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers);
+			for (var cityName in cityDefinitions) {
+				var city = cityDefinitions[cityName];
+				for (var factoryType in city.factories) {
+					var factoryDefinition = factoryTypes[factoryType];
 
-				transactions.push({
-					amount: factoryTypes[factories[i].type].productionPerWorker(cityDefinitions[factories[i].city])*factoryTypes[factories[i].type].demand*factories[i].workers-(cityDefinitions[factories[i].city].wages*factories[i].workers),
-					year: year,
-					month: month,
-					reason: factoryTypes[factories[i].type].factoryName+" in "+cityDefinitions[factories[i].city].name+" revenue."
-				});
+					cash += factoryDefinition.productionPerWorker(city)*factoryDefinition.demand*city.factories[factoryType].workers-(city.wages*city.factories[factoryType].workers);
+
+					transactions.push({
+						amount: factoryDefinition.productionPerWorker(city)*factoryDefinition.demand*city.factories[factoryType].workers-(city.wages*city.factories[factoryType].workers),
+						year: year,
+						month: month,
+						reason: factoryType+" in "+city.name+" revenue."
+					});
+				}
 			}
 		}
 
@@ -300,37 +303,40 @@
 		for (var i=0; i<factoryProfits.length; i++) {
 			var factoryType = factoryTypes[factoryProfits[i].parentElement.getAttribute("data-factory")];
 
-			factoryProfits[i].innerHTML = "Profit: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand).formatCommas(2)+"/worker/month";
+			factoryProfits[i].innerHTML = "Revenue: $"+(factoryType.productionPerWorker(selectedCity)*factoryType.demand).formatCommas(2)+"/worker/month";
 		}
 
 		Array.from(document.getElementsByClassName("transient-factory")).map(function(e) {
 			e.outerHTML = "";
 		});
 
-		var existingFactories = selectedCity.factories();
-		for (i=0; i<existingFactories.length; i++) {
-			var factory = existingFactories[i];
+		var existingFactories = selectedCity.factories;
+		for (var factoryTypeKey in existingFactories) {
+			var factory = existingFactories[factoryTypeKey];
 
-			var factoryType = factoryTypes[factory.type];
+			if (factory.number == 0) {
+				continue;
+			}
+
+			var factoryType = factoryTypes[factoryTypeKey];
 
 			var factoryWrapper = document.createElement("div");
 			factoryWrapper.classList.add("transient-city");
 			factoryWrapper.classList.add("transient-factory");
-			factoryWrapper.setAttribute("data-id", factory.id);
-			factoryWrapper.setAttribute("data-factory", factory.type);
+			factoryWrapper.setAttribute("data-factory", factoryTypeKey);
 			factoryWrapper.style.border = "1px solid black";
 			factoryWrapper.style.padding = "0.4em"
 
 			var factoryName = document.createElement("p");
 			factoryName.classList.add("no-margin");
 			factoryName.style.fontWeight = "bold";
-			factoryName.appendChild(document.createTextNode(factoryType.name));
+			factoryName.appendChild(document.createTextNode(factoryType.name + " ("+factory.number+")"));
 			factoryWrapper.appendChild(factoryName);
 
 			var factoryWorkers = document.createElement("p");
 			factoryWorkers.classList.add("no-margin");
 			factoryWorkers.classList.add("factory-workers")
-			factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+maxFactoryWorkers));
+			factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+(factory.workersPerFactory*factory.number)));
 			factoryWrapper.appendChild(factoryWorkers);
 
 			var factoryWages = document.createElement("p");
@@ -483,109 +489,17 @@
 
 		console.log("Charging "+factoryType.factoryCost(city));
 
-		var factory = {
-			id: factories.length,
-			city: city.shortName,
-			type: factoryType.shortName,
-			workers: 1
-		};
-		factories.push(factory);
-
-		var factoryWrapper = document.createElement("div");
-		factoryWrapper.classList.add("transient-city");
-		factoryWrapper.classList.add("transient-factory");
-		factoryWrapper.setAttribute("data-id", factory.id);
-		factoryWrapper.setAttribute("data-factory", factory.type);
-		factoryWrapper.style.border = "1px solid black";
-		factoryWrapper.style.padding = "0.4em"
-
-		var factoryName = document.createElement("p");
-		factoryName.classList.add("no-margin");
-		factoryName.style.fontWeight = "bold";
-		factoryName.appendChild(document.createTextNode(factoryType.name));
-		factoryWrapper.appendChild(factoryName);
-
-		var factoryWorkers = document.createElement("p");
-		factoryWorkers.classList.add("no-margin");
-		factoryWorkers.classList.add("factory-workers")
-		factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+maxFactoryWorkers));
-		factoryWrapper.appendChild(factoryWorkers);
-
-		var factoryWages = document.createElement("p");
-		factoryWages.classList.add("no-margin");
-		factoryWages.classList.add("factory-wages")
-		factoryWages.appendChild(document.createTextNode("Wages: $"+(city.wages*factory.workers).formatCommas(2)+"/month"));
-		factoryWrapper.appendChild(factoryWages);
-
-		var factoryProfit = document.createElement("p");
-		factoryProfit.classList.add("no-margin");
-		factoryProfit.classList.add("factory-profit")
-		factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
-		factoryWrapper.appendChild(factoryProfit);
-
-		var factoryRealProfit = document.createElement("p");
-		factoryRealProfit.classList.add("no-margin");
-		factoryRealProfit.classList.add("factory-real-profit")
-		factoryRealProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand*factory.workers).formatCommas(2)+"/month"));
-		factoryWrapper.appendChild(factoryRealProfit);
-
-		var factoryNet = document.createElement("p");
-		factoryNet.classList.add("no-margin");
-		factoryNet.classList.add("factory-net")
-		factoryNet.appendChild(document.createTextNode("Net: $"+(factoryType.productionPerWorker(city)*factoryType.demand*factory.workers-(city.wages*factory.workers)).formatCommas(2)+"/month"));
-		factoryWrapper.appendChild(factoryNet);
-
-		var factoryAddWorkerButton = document.createElement("button");
-		factoryAddWorkerButton.classList.add("factory-add-worker-button");
-		factoryAddWorkerButton.appendChild(document.createTextNode("Add Worker"));
-		factoryAddWorkerButton.appendChild(document.createElement("br"));
-		factoryAddWorkerButton.appendChild(document.createTextNode("$"+city.workerCost().formatCommas(2)));
-
-		if (city.workerCost() > cash || factory.workers == maxFactoryWorkers) {
-			factoryAddWorkerButton.classList.add("disabled");
-		} else {
-			factoryAddWorkerButton.classList.remove("disabled");
-		}
-
-		factoryAddWorkerButton.onclick = addWorkerClick;
-		factoryWrapper.appendChild(factoryAddWorkerButton);
-
-		var factoryRemoveWorkerButton = document.createElement("button");
-		factoryRemoveWorkerButton.classList.add("factory-remove-worker-button");
-		factoryRemoveWorkerButton.classList.add("red-button");
-		factoryRemoveWorkerButton.appendChild(document.createTextNode("Remove Worker"));
-		factoryRemoveWorkerButton.appendChild(document.createElement("br"));
-		factoryRemoveWorkerButton.appendChild(document.createTextNode("+$"+(city.workerCost()*.6).formatCommas(2)));
-
-		if (factory.workers == 0) {
-			factoryRemoveWorkerButton.classList.add("disabled");
-		} else {
-			factoryRemoveWorkerButton.classList.remove("disabled");
-		}
-
-		factoryRemoveWorkerButton.onclick = removeWorkerClick;
-		factoryWrapper.appendChild(factoryRemoveWorkerButton);
-
-		var factorySellButton = document.createElement("button");
-		factorySellButton.classList.add("factory-sell-button");
-		factorySellButton.classList.add("red-button");
-		factorySellButton.appendChild(document.createTextNode("Sell Factory"));
-		factorySellButton.appendChild(document.createElement("br"));
-		factorySellButton.appendChild(document.createTextNode("+$"+(0.6*factoryType.factoryCost(city)/city.factoryCostMultiplier).formatCommas(2)));
-
-		factorySellButton.onclick = factorySellClick;
-		factoryWrapper.appendChild(factorySellButton);
-
-		cityExistingFactoryDisplay.appendChild(factoryWrapper);
+		city.factories[factoryType.shortName].number++;
+		city.factories[factoryType.shortName].workers++;
 
 		tick(false);
 	}
 
 	function addWorkerClick() {
 		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
-		var factory = factories[this.parentElement.getAttribute("data-id")];
+		var factoryType = this.parentElement.getAttribute("data-factory");
 
-		if (city.workerCost() > cash || factory.workers == maxFactoryWorkers) {
+		if (city.workerCost() > cash || city.factories[factoryType].workers >= (city.factories[factoryType].workersPerFactory*city.factories[factoryType].number)) {
 			return;
 		}
 
@@ -594,17 +508,17 @@
 			amount: -city.workerCost(),
 			year: year,
 			month: month,
-			reason: "Hiring of a worker for "+factoryTypes[factory.type].factoryName+" in "+city.name
+			reason: "Hiring of a worker for "+factoryTypes[factoryType].factoryName+" in "+city.name
 		});
-		factory.workers++;
+		city.factories[factoryType].workers++;
 
 		tick(false);
 	}
 	function removeWorkerClick() {
 		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
-		var factory = factories[this.parentElement.getAttribute("data-id")];
+		var factoryType = this.parentElement.getAttribute("data-factory");
 
-		if (factory.workers == 0) {
+		if (city.factories[factoryType].workers == 0) {
 			return;
 		}
 
@@ -613,34 +527,29 @@
 			amount: city.workerCost()*0.6,
 			year: year,
 			month: month,
-			reason: "Firing of a worker for "+factoryTypes[factory.type].factoryName+" in "+city.name
+			reason: "Firing of a worker for "+factoryTypes[factoryType].factoryName+" in "+city.name
 		});
-		factory.workers--;
+		city.factories[factoryType].workers--;
 
 		tick(false);
 	}
 	function factorySellClick() {
 		var city = cityDefinitions[cityParametersElement.getAttribute("data-city")];
-		var factory = factories[this.parentElement.getAttribute("data-id")];
+		var factoryType = this.parentElement.getAttribute("data-factory");
 
-		if (factory.workers > 0) {
+		if (city.factories[factoryType].number == 1 && city.factories[factoryType].workers > 0) {
 			alert("You must remove all workers before you can sell this factory.");
 			return;
 		}
 
-		cash += 0.6*factoryTypes[factory.type].factoryCost(city)/city.factoryCostMultiplier;
+		cash += 0.6*factoryTypes[factoryType].factoryCost(city)/city.factoryCostMultiplier;
 		transactions.push({
 			amount: city.workerCost()*0.6,
 			year: year,
 			month: month,
-			reason: "Selling of a "+factoryTypes[factory.type].factoryName+" in "+city.name
+			reason: "Selling of a "+factoryTypes[factoryType].factoryName+" in "+city.name
 		});
-		factories.splice(this.parentElement.getAttribute("data-id"), 1);
-
-		// reset other IDs
-		for (var i = 0; i < factories.length; i++) {
-			factories[i].id = i;
-		}
+		city.factories[factoryType].number--;
 
 		tick(false);
 	}
@@ -685,100 +594,6 @@
 					cityNoExistingFactories.classList.remove("hide");
 				} else {
 					cityNoExistingFactories.classList.add("hide");
-				}
-
-				var existingFactories = city.factories();
-				for (i=0; i<existingFactories.length; i++) {
-					var factory = existingFactories[i];
-
-					var factoryType = factoryTypes[factory.type];
-
-					var factoryWrapper = document.createElement("div");
-					factoryWrapper.classList.add("transient-city");
-					factoryWrapper.classList.add("transient-factory");
-					factoryWrapper.setAttribute("data-id", factory.id);
-					factoryWrapper.setAttribute("data-factory", factory.type);
-					factoryWrapper.style.border = "1px solid black";
-					factoryWrapper.style.padding = "0.4em"
-
-					var factoryName = document.createElement("p");
-					factoryName.classList.add("no-margin");
-					factoryName.style.fontWeight = "bold";
-					factoryName.appendChild(document.createTextNode(factoryType.name));
-					factoryWrapper.appendChild(factoryName);
-
-					var factoryWorkers = document.createElement("p");
-					factoryWorkers.classList.add("no-margin");
-					factoryWorkers.classList.add("factory-workers")
-					factoryWorkers.appendChild(document.createTextNode("Workers: "+factory.workers+"/"+maxFactoryWorkers));
-					factoryWrapper.appendChild(factoryWorkers);
-
-					var factoryWages = document.createElement("p");
-					factoryWages.classList.add("no-margin");
-					factoryWages.classList.add("factory-wages")
-					factoryWages.appendChild(document.createTextNode("Wages: $"+(city.wages*factory.workers).formatCommas(2)+"/month"));
-					factoryWrapper.appendChild(factoryWages);
-
-					var factoryProfit = document.createElement("p");
-					factoryProfit.classList.add("no-margin");
-					factoryProfit.classList.add("factory-profit")
-					factoryProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand).formatCommas(2)+"/worker/month"));
-					factoryWrapper.appendChild(factoryProfit);
-
-					var factoryRealProfit = document.createElement("p");
-					factoryRealProfit.classList.add("no-margin");
-					factoryRealProfit.classList.add("factory-real-profit")
-					factoryRealProfit.appendChild(document.createTextNode("Profit: $"+(factoryType.productionPerWorker(city)*factoryType.demand*factory.workers).formatCommas(2)+"/month"));
-					factoryWrapper.appendChild(factoryRealProfit);
-
-					var factoryNet = document.createElement("p");
-					factoryNet.classList.add("no-top-margin");
-					factoryNet.classList.add("factory-net")
-					factoryNet.appendChild(document.createTextNode("Net: $"+(factoryType.productionPerWorker(city)*factoryType.demand*factory.workers-(city.wages*factory.workers)).formatCommas(2)+"/month"));
-					factoryWrapper.appendChild(factoryNet);
-
-					var factoryAddWorkerButton = document.createElement("button");
-					factoryAddWorkerButton.classList.add("factory-add-worker-button");
-					factoryAddWorkerButton.appendChild(document.createTextNode("Add Worker"));
-					factoryAddWorkerButton.appendChild(document.createElement("br"));
-					factoryAddWorkerButton.appendChild(document.createTextNode("$"+city.workerCost().formatCommas(2)));
-
-					if (city.workerCost() > cash || factory.workers == maxFactoryWorkers) {
-						factoryAddWorkerButton.classList.add("disabled");
-					} else {
-						factoryAddWorkerButton.classList.remove("disabled");
-					}
-
-					factoryAddWorkerButton.onclick = addWorkerClick;
-					factoryWrapper.appendChild(factoryAddWorkerButton);
-
-					var factoryRemoveWorkerButton = document.createElement("button");
-					factoryRemoveWorkerButton.classList.add("factory-remove-worker-button");
-					factoryRemoveWorkerButton.classList.add("red-button");
-					factoryRemoveWorkerButton.appendChild(document.createTextNode("Remove Worker"));
-					factoryRemoveWorkerButton.appendChild(document.createElement("br"));
-					factoryRemoveWorkerButton.appendChild(document.createTextNode("+$"+(city.workerCost()*.6).formatCommas(2)));
-
-					if (factory.workers == 0) {
-						factoryRemoveWorkerButton.classList.add("disabled");
-					} else {
-						factoryRemoveWorkerButton.classList.remove("disabled");
-					}
-
-					factoryRemoveWorkerButton.onclick = removeWorkerClick;
-					factoryWrapper.appendChild(factoryRemoveWorkerButton);
-
-					var factorySellButton = document.createElement("button");
-					factorySellButton.classList.add("factory-sell-button");
-					factorySellButton.classList.add("red-button");
-					factorySellButton.appendChild(document.createTextNode("Sell Factory"));
-					factorySellButton.appendChild(document.createElement("br"));
-					factorySellButton.appendChild(document.createTextNode("+$"+(0.6*factoryType.factoryCost(city)/city.factoryCostMultiplier).formatCommas(2)));
-
-					factorySellButton.onclick = factorySellClick;
-					factoryWrapper.appendChild(factorySellButton);
-
-					cityExistingFactoryDisplay.appendChild(factoryWrapper);
 				}
 
 				for (factory in factoryTypes) {

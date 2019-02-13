@@ -44,22 +44,35 @@
 		},
 		baseFactoryCost: 50000,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
@@ -111,22 +124,35 @@
 		},
 		baseFactoryCost: 40000,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
@@ -178,22 +204,35 @@
 		},
 		baseFactoryCost: 35000,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
@@ -245,22 +284,35 @@
 		},
 		baseFactoryCost: 17500,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
@@ -312,22 +364,35 @@
 		},
 		baseFactoryCost: 10000,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
@@ -379,22 +444,35 @@
 		},
 		baseFactoryCost: 15000,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
@@ -446,22 +524,35 @@
 		},
 		baseFactoryCost: 15000,
 		factoryCostMultiplier: 1.6,
-		factories: function(type) {
-			var cityShortName = this.shortName;
-			return factories.filter(function(factory) {
-				if (type == undefined) {
-					return factory.city == cityShortName;
-				} else {
-					return factory.city == cityShortName && factory.type == type;
-				}
-			});
+		factories: {
+			textile: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			metals: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			},
+			consumerGoods: {
+				number: 0,
+				workersPerFactory: 5,
+				workers: 0
+			}
 		},
 		numberOfFactories: function(type) {
-			return this.factories(type).length;
+			var t = this;
+			if (type == undefined) {
+				return Object.keys(this.factories).reduce(((accumulator, currentValue) => (accumulator + t.factories[currentValue].number)), 0);
+			} else {
+				return this.factories[type].number;
+			}
 		},
 		numberOfWorkers: function() {
-			return this.factories().reduce(function(a,b) {
-				return a+b.workers;
+			var t = this;
+			return Object.keys(this.factories).reduce(function(a,b) {
+				return a+t.factories[b].workers;
 			}, 0);
 		},
 		workerCost: function() {
