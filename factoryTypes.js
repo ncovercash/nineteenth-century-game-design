@@ -10,7 +10,7 @@
 		productionPerWorker: function(city) {
 			return 3/(1.1-(0.1*city.proximity.water));
 		},
-		demand: 40
+		demand: 25
 	},
 	metals: {
 		name: "Metals",

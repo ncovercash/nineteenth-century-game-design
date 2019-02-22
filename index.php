@@ -244,6 +244,70 @@
 
 	var tickTimeout = undefined;
 
+	var events = {
+		"1781/1": {
+			description: "Watt creates the steam engine; all factories are boosted as resources are easier to obtain and ship and machines can run more efficiently.",
+			applyChanges: function() {
+				for (var cityName in cityDefinitions) {
+					cityDefinitions[cityName].proximity.water = Math.max(5, cityDefinitions[cityName].proximity.water + 0.5);
+					cityDefinitions[cityName].proximity.iron = Math.max(5, cityDefinitions[cityName].proximity.iron + 0.5);
+					cityDefinitions[cityName].proximity.coal = Math.max(5, cityDefinitions[cityName].proximity.coal + 0.5);
+				}
+			},
+		},
+		"1785/5": {
+			description: "Edmund Cartwright built and developed the flying shuttle, a massive boost to textile factories.",
+			applyChanges: function() {
+				factoryTypes.textile.demand *= 1.8;
+			},
+		},
+		"1799/7": {
+			description: "The British Parliament passes the Combination Acts, disallowing the formation of worker's unions in England.  This serves to decrease wages within the country.",
+			applyChanges: function() {
+				cityDefinitions.manchester.wages *= 0.85;
+				cityDefinitions.birmingham.wages *= 0.85;
+				cityDefinitions.bristol.wages *= 0.85;
+				cityDefinitions.london.wages *= 0.85;
+			},
+		},
+		"1804/4": {
+			description: "Steam locomotive and internal combustion engines developed.  These advancements in transportation encouraged increased trade and allowed for increased transportation of raw materials and resources.",
+			applyChanges: function() {
+				for (var cityName in cityDefinitions) {
+					cityDefinitions[cityName].proximity.water = Math.max(5, cityDefinitions[cityName].proximity.water + 0.5);
+					cityDefinitions[cityName].proximity.iron = Math.max(5, cityDefinitions[cityName].proximity.iron + 0.5);
+					cityDefinitions[cityName].proximity.coal = Math.max(5, cityDefinitions[cityName].proximity.coal + 0.5);
+				}
+			},
+		},
+		"1812/2": {
+			description: "Anti-luddite laws in England decrease the initial investment required to build factories in Britain.",
+			applyChanges: function() {
+				cityDefinitions.manchester.baseFactoryCost *= 0.85;
+				cityDefinitions.birmingham.baseFactoryCost *= 0.85;
+				cityDefinitions.bristol.baseFactoryCost *= 0.85;
+				cityDefinitions.london.baseFactoryCost *= 0.85;
+			},
+		},
+		"1815/9": {
+			description: "Anti-luddite laws in England decrease the initial investment required to build factories in Britain.",
+			applyChanges: function() {
+				cityDefinitions.manchester.baseFactoryCost *= 0.85;
+				cityDefinitions.birmingham.baseFactoryCost *= 0.85;
+				cityDefinitions.bristol.baseFactoryCost *= 0.85;
+				cityDefinitions.london.baseFactoryCost *= 0.85;
+			},
+		},
+		"1842/9": {
+			description: "Newly-released Report on Sanitary Conditions by Edward Chadwick greatly reforms public awareness about living conditions.  Workers demand higher wages and better conditions.",
+			applyChanges: function() {
+				for (var cityName in cityDefinitions) {
+					cityDefinitions[cityName].wages *= 1.25;
+				}
+			},
+		},
+	};
+
 	function tick(doTick=true) {
 		lastTick = Date.now();
 
@@ -252,6 +316,11 @@
 			if (month >= 12) {
 				year++;
 				month = 0;
+			}
+
+			if (events.hasOwnProperty(""+year+"/"+month)) {
+				alert(year + " " + MONTHS[month] + "\n" + events[""+year+"/"+month].description);
+				events[""+year+"/"+month].applyChanges();
 			}
 
 			for (var cityName in cityDefinitions) {
