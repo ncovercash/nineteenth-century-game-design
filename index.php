@@ -308,15 +308,6 @@
 				cityDefinitions.london.baseFactoryCost *= 0.85;
 			},
 		},
-		"1815/9": {
-			description: "Anti-luddite laws in England decrease the initial investment required to build factories in Britain.",
-			applyChanges: function() {
-				cityDefinitions.manchester.baseFactoryCost *= 0.85;
-				cityDefinitions.birmingham.baseFactoryCost *= 0.85;
-				cityDefinitions.bristol.baseFactoryCost *= 0.85;
-				cityDefinitions.london.baseFactoryCost *= 0.85;
-			},
-		},
 		"1842/9": {
 			description: "Newly-released Report on Sanitary Conditions by Edward Chadwick greatly reforms public awareness about living conditions.  Workers demand higher wages and better conditions.",
 			applyChanges: function() {
