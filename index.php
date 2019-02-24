@@ -324,6 +324,9 @@
 		if (!paused && doTick) {
 			month++;
 			if (month >= 12) {
+				for (var cityName in cityDefinitions) {
+					cityDefinitions[cityName].wages++;
+				}
 				year++;
 				month = 0;
 			}
