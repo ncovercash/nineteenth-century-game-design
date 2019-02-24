@@ -107,6 +107,14 @@
 			button.disabled.red-button {
 				color: #b71c1c;
 			}
+
+			blockquote {
+			  margin: 20px 0;
+			  padding-left: 1.5rem;
+			  padding-top: 8px;
+			  padding-bottom: 8px;
+			  border-left: 5px solid #444;
+			}
 		</style>
 	</head>
 	<body>
@@ -116,7 +124,18 @@
 				<h5 class="header center small-margin">Noah Overcash and Harry Charles</h5>
 				<h5 class="header center no-top-margin">Mr. Wallace's AP European History, Period 3A</h5>
 
-				<p>Instructions go here, try to get the most money by the year 1860</p>
+				<blockquote>
+					<p class="no-margin" style="font-size: 120%;"><strong>Instructions:</strong></p>
+
+					<p class="no-margin">You are a British entrepreneur in the eighteenth and nineteenth centuries looking to make as much money as you can from industrialization.</p>
+					<p class="no-margin">You have until 1860 to rack up as much profit as you can – at that point, the game is over.</p>
+					<p class="no-margin">Using the slider at the right, you have the power to control time – use this to your benefit; slow time down to build factories and speed time up to amass your fortune!</p>
+					<p class="no-margin">As an investor, there are many cities across Europe you can invest in.  Click on the map in order to select a city and perform actions on it.</p>
+					<p class="no-margin">Once a city is selected, you can build any of the three types of factories.  However, look out for the revenue each factory produces – some are more profitable than others!</p>
+					<p class="no-margin">Cities have different resources and wages – these will affect the cost of workers and the profit from each factory.</p>
+					<p class="no-margin">Each factory come with one worker – up to five can be purchased per factory built.  Factories are automatically clustered based on type for easy management.</p>
+					<p class="no-margin">Over time, certain inventions/social movements may occur, changing resources, wages, and factory prices at any time.</p>
+				</blockquote>
 			</div>
 			<div class="divider"></div>
 			<div class="section">
