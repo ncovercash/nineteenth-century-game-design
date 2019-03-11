@@ -268,9 +268,9 @@
 			description: "Watt creates the steam engine; all factories are boosted as resources are easier to obtain and ship and machines can run more efficiently.",
 			applyChanges: function() {
 				for (var cityName in cityDefinitions) {
-					cityDefinitions[cityName].proximity.water = Math.max(5, cityDefinitions[cityName].proximity.water + 0.5);
-					cityDefinitions[cityName].proximity.iron = Math.max(5, cityDefinitions[cityName].proximity.iron + 0.5);
-					cityDefinitions[cityName].proximity.coal = Math.max(5, cityDefinitions[cityName].proximity.coal + 0.5);
+					cityDefinitions[cityName].proximity.water = Math.min(5, cityDefinitions[cityName].proximity.water + 0.5);
+					cityDefinitions[cityName].proximity.iron = Math.min(5, cityDefinitions[cityName].proximity.iron + 0.5);
+					cityDefinitions[cityName].proximity.coal = Math.min(5, cityDefinitions[cityName].proximity.coal + 0.5);
 				}
 			},
 		},
@@ -293,9 +293,9 @@
 			description: "Steam locomotive and internal combustion engines developed.  These advancements in transportation encouraged increased trade and allowed for increased transportation of raw materials and resources.",
 			applyChanges: function() {
 				for (var cityName in cityDefinitions) {
-					cityDefinitions[cityName].proximity.water = Math.max(5, cityDefinitions[cityName].proximity.water + 0.5);
-					cityDefinitions[cityName].proximity.iron = Math.max(5, cityDefinitions[cityName].proximity.iron + 0.5);
-					cityDefinitions[cityName].proximity.coal = Math.max(5, cityDefinitions[cityName].proximity.coal + 0.5);
+					cityDefinitions[cityName].proximity.water = Math.min(5, cityDefinitions[cityName].proximity.water + 0.5);
+					cityDefinitions[cityName].proximity.iron = Math.min(5, cityDefinitions[cityName].proximity.iron + 0.5);
+					cityDefinitions[cityName].proximity.coal = Math.min(5, cityDefinitions[cityName].proximity.coal + 0.5);
 				}
 			},
 		},
@@ -658,9 +658,9 @@
 
 				cityWorkerWageElement.innerHTML = "$"+city.wages.formatCommas(2);
 
-				cityProximityToWaterElement.innerHTML = PROXIMITY_LABELS[city.proximity.water];
-				cityProximityToCoalElement.innerHTML = PROXIMITY_LABELS[city.proximity.coal];
-				cityProximityToIronElement.innerHTML = PROXIMITY_LABELS[city.proximity.iron];
+				cityProximityToWaterElement.innerHTML = PROXIMITY_LABELS[Math.floor(city.proximity.water)];
+				cityProximityToCoalElement.innerHTML = PROXIMITY_LABELS[Math.floor(city.proximity.coal)];
+				cityProximityToIronElement.innerHTML = PROXIMITY_LABELS[Math.floor(city.proximity.iron)];
 
 				for (i=0; i<clickableMapItems.length; i++) {
 					clickableMapItems[i].style.stroke = "#ffffff";
